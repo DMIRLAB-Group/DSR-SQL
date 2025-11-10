@@ -9,6 +9,8 @@
   </small>
 </p>
 
+![toy_ex](assets/fig1.png)
+
 ## Overview
 
 Recent divide-and-conquer reasoning approaches, particularly those based on Chain-of-Thought (CoT), have substantially improved the Text-to-SQL capabilities of Large Language Models (LLMs). However, when applied to complex enterprise databases, such methods struggle to maintain coherent reasoning due to limited context capacity, unreliable schema linking, and weak grounding in database semantics. To overcome these issues, we introduce DSR-SQL, a Dual-State Reasoning framework that models Text-to-SQL as an interaction between an adaptive context state and a progressive generation state. The adaptive context state constructs a compact, semantically faithful environment by refining large schemas and selecting relevant structures, while the progressive generation state formalizes SQL synthesis as feedback-guided state transitions, enabling the model to self-correct and better align with user intent. Without any post-training or in-context examples, DSR-SQL achieves competitive performance, reaching 35.28% execution accuracy on Spider 2.0-Snow and 68.32% on the BIRD development set.
