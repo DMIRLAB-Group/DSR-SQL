@@ -22,7 +22,7 @@ Recent divide-and-conquer reasoning approaches, particularly those based on Chai
 
 ## 💻 Code Releases
 
-*   **Spider2.0-Lite task:** Our implementation will be publicly released by November 20, 2025.  
+*   **Spider2.0-Lite task:** Our implementation will be publicly released **before November 30, 2025.**  
 *   **Spider2.0-Snow and BIRD tasks:** Our implementation will be open-sourced following the acceptance of the associated research paper.
 
 > **Important Notes:**
@@ -67,3 +67,5 @@ Finally, we are deeply grateful to the [DeepSeek-AI](https://github.com/deepseek
 
 ## 📝 Citation
 If you find our work useful or inspiring, please kindly cite:
+```bibtex
+```
