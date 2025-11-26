@@ -1,0 +1,2 @@
+Considering that most current tasks are centered around SQLite, and the SQL generation capabilities of open-source language models on Snowflake and BigQuery engines are rather limited, we hereby provide a comprehensive presentation of DSR-SQL's performance across various model sizes on the Spider-SQLite segment. **Note: The SQLite portion does not represent the full scope or difficulty of Spider 2.0.**
+

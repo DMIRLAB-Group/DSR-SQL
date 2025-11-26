@@ -6,6 +6,8 @@
     <a href="https://github.com/qcjySONG">Qibin Song</a> | 
     <a href="https://ruichucai.github.io/">Ruichu Cai</a> | 
     <a href="https://boyanxu1.github.io/">Boyan Xu*</a>
+    <br>
+    ✨If you find our work helpful, please don't hesitate to give us a star!✨
   </small>
 </p>
 
@@ -16,9 +18,21 @@
 Recent divide-and-conquer reasoning approaches, particularly those based on Chain-of-Thought (CoT), have substantially improved the Text-to-SQL capabilities of Large Language Models (LLMs). However, when applied to complex enterprise databases, such methods struggle to maintain coherent reasoning due to limited context capacity, unreliable schema linking, and weak grounding in database semantics. To overcome these issues, we introduce DSR-SQL, a Dual-State Reasoning framework that models Text-to-SQL as an interaction between an adaptive context state and a progressive generation state. The adaptive context state constructs a compact, semantically faithful environment by refining large schemas and selecting relevant structures, while the progressive generation state formalizes SQL synthesis as feedback-guided state transitions, enabling the model to self-correct and better align with user intent. Without any post-training or in-context examples, DSR-SQL achieves competitive performance, reaching 35.28% execution accuracy on Spider 2.0-Snow and 68.32% on the BIRD development set.
 ![Overview](assets/fig2.png)
 
-## 🥉 Results
+## 💎 Results
 
 ![Results](assets/Results.png)
+
+> We are still refining the program to achieve higher stability and accuracy~
+<details>
+<summary><strong>Click to expand: Important context regarding Dataset Versions & New Results</strong></summary>
+
+During the external review period of our paper, both datasets used in our work underwent significant version upgrades. For the Spider 2.0 series, the new version only updated the evaluation set. For the BIRD dev set, the new version performed substantial disambiguation and error correction on questions, evidence, SQL queries, and more. Both dataset updates aim to better align with human intuition and reduce annotation bias (although it would be even better if the BIRD evaluation metric, EX, could tolerate a small numerical rounding margin). We sincerely appreciate the efforts and dedication of the respective teams behind these updates.
+
+Furthermore, **we earnestly encourage everyone to conduct comparisons using the new versions of these evaluation sets**, rather than the older versions reported in our paper. (Given that our paper is already under external review, and considering the API costs and methodological consistency based on the old datasets, we currently do not plan to fully adopt the new versions within the paper.)
+
+![new Results](assets/result_new.png)
+
+</details>
 
 ## 💻 Code Releases
 
