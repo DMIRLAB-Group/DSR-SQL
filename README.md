@@ -7,7 +7,7 @@
     <a href="https://ruichucai.github.io/">Ruichu Cai</a> | 
     <a href="https://boyanxu1.github.io/">Boyan Xu*</a>
     <br>
-    ✨If you find our work helpful, please don't hesitate to give us a star!✨
+    🤗If you find our work helpful, please don't hesitate to give us a star!✨
   </small>
 </p>
 
@@ -36,7 +36,7 @@ Furthermore, **we earnestly encourage everyone to conduct comparisons using the 
 
 ## 💻 Code Releases
 
-*   **Spider2.0-Lite task:** Our implementation will be publicly released **before November 30, 2025.**  
+*   **Spider2.0-Lite task:** Our implementation will be publicly released **before December 10, 2025.**  
 *   **Spider2.0-Snow and BIRD tasks:** Our implementation will be open-sourced following the acceptance of the associated research paper.
 
 > **Important Notes:**
