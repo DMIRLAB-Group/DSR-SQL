@@ -103,5 +103,5 @@ TBD
 ## Other
 
 - We have provided the [input files](../DSR_Lite/data) for the Generation-State Evolution step to facilitate reproduction.
-- We have displayed the [full log files](../DSR_Lite/Result_12081549) of DSR-SQL running on some examples. You can check how DSR-SQL performs the "exploration" step in [sf_bq270](../DSR_Lite/Result_12081549/log/sf_bq270_1/main_sf_bq270_1.log).
+- We have displayed the [full log files](../DSR_Lite/Result_12081549) of DSR-SQL running on some examples. You can check how DSR-SQL performs the " Explore" step in [sf_bq270](../DSR_Lite/Result_12081549/log/sf_bq270_1/main_sf_bq270_1.log).
 - Due to the offline status of the DeepSeek-R1/V3 series models and changes in online databases, the results may differ slightly!
