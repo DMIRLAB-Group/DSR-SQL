@@ -36,7 +36,7 @@ Furthermore, **we earnestly encourage everyone to conduct comparisons using the 
 
 ## 💻 Code Releases
 
-*   **Spider2.0-Lite task:** Our implementation will be publicly released **before December 10, 2025.**  
+*   **Spider2.0-Lite task:** We have fully provided the code and processed input files for running Spider2.0-Lite. Please check [here](DSR_Lite/README.md).
 *   **Spider2.0-Snow and BIRD tasks:** Our implementation will be open-sourced following the acceptance of the associated research paper.
 
 > **Important Notes:**
