@@ -47,7 +47,7 @@ Furthermore, **we earnestly encourage everyone to conduct comparisons using the 
 
 ## 🚀 Quick Start
 
-- TBD
+see [here](DSR_Lite/README.md).
 
 ## 🐞 Error Analysis
 

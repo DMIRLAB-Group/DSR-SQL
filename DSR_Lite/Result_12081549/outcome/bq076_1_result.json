@@ -1,0 +1,23 @@
+[
+  {
+    "instance_id": "bq076",
+    "db": "chicago",
+    "question": "What is the highest number of motor vehicle theft incidents that occurred in any single month during 2016?",
+    "external_knowledge": null,
+    "evidence": "",
+    "table": [
+      "bigquery-public-data.chicago_crime.crime"
+    ],
+    "col": {
+      "bigquery-public-data.chicago_crime.crime": []
+    },
+    "sample_history": {
+      "0": {
+        "bigquery-public-data.chicago_crime.crime": []
+      }
+    },
+    "temp_SQL": "SELECT MAX(incident_count) AS max_incidents\nFROM (\n  SELECT FORMAT_TIMESTAMP('%Y-%m', date) AS month, COUNT(unique_key) AS incident_count\n  FROM `bigquery-public-data.chicago_crime.crime`\n  WHERE primary_type = 'MOTOR VEHICLE THEFT'\n    AND year = 2016\n  GROUP BY month\n)",
+    "final_SQL": "SELECT MAX(incident_count) AS max_incidents\nFROM (\n  SELECT FORMAT_TIMESTAMP('%Y-%m', date) AS month, COUNT(unique_key) AS incident_count\n  FROM `bigquery-public-data.chicago_crime.crime`\n  WHERE primary_type = 'MOTOR VEHICLE THEFT'\n    AND year = 2016\n  GROUP BY month\n)",
+    "Step_counter": 3
+  }
+]

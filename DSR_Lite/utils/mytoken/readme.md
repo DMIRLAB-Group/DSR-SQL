@@ -1,0 +1,2 @@
+We are using DeepSeek's official tokenizer (this version should be DeepSeek-R1 from January 2025), which is only used for token calculation. The improvement from replacement may not be immediately noticeable.  
+Link: https://cdn.deepseek.com/api-docs/deepseek_v3_tokenizer.zip

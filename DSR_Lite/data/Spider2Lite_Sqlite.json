@@ -1,0 +1,4363 @@
+[
+    {
+        "instance_id": "local002",
+        "db": "E_commerce",
+        "question": "Can you calculate the 5-day symmetric moving average of predicted toy sales for December 5 to 8, 2018, using daily sales data from January 1, 2017, to August 29, 2018, with a simple linear regression model? Finally provide the sum of those four 5-day moving averages?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "order_items",
+            "orders",
+            "product_category_name_translation",
+            "products"
+        ],
+        "col": {
+            "order_items": [],
+            "orders": [],
+            "product_category_name_translation": [],
+            "products": []
+        },
+        "sample_history": {
+            "0": {
+                "orders": [],
+                "order_items": [],
+                "products": [],
+                "product_category_name_translation": []
+            },
+            "1": {
+                "orders": [],
+                "products": [],
+                "order_items": []
+            },
+            "2": {
+                "orders": [],
+                "order_items": [],
+                "products": [],
+                "product_category_name_translation": []
+            }
+        }
+    },
+    {
+        "instance_id": "local003",
+        "db": "E_commerce",
+        "question": "According to the RFM definition document, calculate the average sales per order for each customer within distinct RFM segments, considering only 'delivered' orders. Use the customer unique identifier. Clearly define how to calculate Recency based on the latest purchase timestamp and specify the criteria for classifying RFM segments. The average sales should be computed as the total spend divided by the total number of orders. Please analyze and report the differences in average sales across the RFM segments",
+        "external_knowledge": "RFM.md",
+        "evidence": "RFM segmentation logic: Champions: R=1 AND (F+M) BETWEEN 1 AND 4; Can't Lose Them: R IN (4,5) AND (F+M) BETWEEN 1 AND 2; Hibernating: R IN (4,5) AND (F+M) BETWEEN 3 AND 6; Lost: R IN (4,5) AND (F+M) BETWEEN 7 AND 10; Loyal Customers: R IN (2,3) AND (F+M) BETWEEN 1 AND 4; Needs Attention: R=3 AND (F+M) BETWEEN 5 AND 6; Recent Users: R=1 AND (F+M) BETWEEN 7 AND 8; Potential Loyalists: (R=1 AND (F+M) BETWEEN 5 AND 6) OR (R=2 AND (F+M) BETWEEN 5 AND 8); Price Sensitive: R=1 AND (F+M) BETWEEN 9 AND 10; Promising: R=2 AND (F+M) BETWEEN 9 AND 10; About to Sleep: R=3 AND (F+M) BETWEEN 7 AND 10",
+        "table": [
+            "customers",
+            "order_items",
+            "orders"
+        ],
+        "col": {
+            "customers": [],
+            "order_items": [],
+            "orders": []
+        },
+        "sample_history": {
+            "0": {
+                "orders": [],
+                "order_items": [],
+                "customers": []
+            },
+            "1": {
+                "customers": [],
+                "orders": [],
+                "order_items": []
+            },
+            "2": {
+                "customers": [],
+                "orders": [],
+                "order_items": []
+            }
+        }
+    },
+    {
+        "instance_id": "local004",
+        "db": "E_commerce",
+        "question": "Could you tell me the number of orders, average payment per order and customer lifespan in weeks of the 3 custumers with the highest average payment per order, where the lifespan is calculated by subtracting the earliest purchase date from the latest purchase date in days, dividing by seven, and if the result is less than seven days, setting it to 1.0?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "customers",
+            "order_payments",
+            "orders"
+        ],
+        "col": {
+            "customers": [],
+            "order_payments": [],
+            "orders": []
+        },
+        "sample_history": {
+            "0": {
+                "customers": [],
+                "orders": [],
+                "order_payments": []
+            },
+            "1": {
+                "customers": [],
+                "orders": [],
+                "order_payments": []
+            },
+            "2": {
+                "orders": [],
+                "order_payments": []
+            }
+        }
+    },
+    {
+        "instance_id": "local007",
+        "db": "Baseball",
+        "question": "Could you help me calculate the average single career span value in years for all baseball players? Please precise the result as a float number. First, calculate the difference in years, months, and days between the debut and final game dates. For each player, the career span is computed as the sum of the absolute number of years, plus the absolute number of months divided by 12, plus the absolute number of days divided by 365. Round each part to two decimal places before summing. Finally, average the career spans and round the result to a float number.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "player"
+        ],
+        "col": {
+            "player": []
+        },
+        "sample_history": {
+            "0": {
+                "player": []
+            }
+        }
+    },
+    {
+        "instance_id": "local008",
+        "db": "Baseball",
+        "question": "I would like to know the given names of baseball players who have achieved the highest value of games played, runs, hits, and home runs, with their corresponding score values.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "batting",
+            "player"
+        ],
+        "col": {
+            "batting": [],
+            "player": []
+        },
+        "sample_history": {
+            "0": {
+                "batting": [],
+                "player": []
+            },
+            "1": {
+                "batting": [],
+                "player": []
+            },
+            "2": {
+                "batting": [],
+                "player": []
+            }
+        }
+    },
+    {
+        "instance_id": "local009",
+        "db": "Airlines",
+        "question": "What is the distance of the longest route where Abakan is either the departure or destination city (in kilometers)?",
+        "external_knowledge": "haversine_formula.md",
+        "evidence": "Flight route distance calculation uses Haversine formula with Earth radius 6371 km. Inputs are departure city (`from_city`) coordinates and arrival city (`to_city`) coordinates in decimal degrees. Convert degrees to radians: radians = degrees × (π/180). Formula: d = 2r · arcsin(√[sin²(Δφ/2) + cosφ1·cosφ2·sin²(Δλ/2)]). Routes are standardized: lexicographically smaller city as `city1`, larger as `city2`. Average distance = total flight distances / number of flights.",
+        "table": [
+            "airports_data",
+            "flights"
+        ],
+        "col": {
+            "airports_data": [],
+            "flights": []
+        },
+        "sample_history": {
+            "0": {
+                "airports_data": [],
+                "flights": []
+            },
+            "1": {
+                "airports_data": [],
+                "flights": []
+            },
+            "2": {
+                "airports_data": [],
+                "flights": []
+            }
+        }
+    },
+    {
+        "instance_id": "local010",
+        "db": "Airlines",
+        "question": "Distribute all the unique city pairs into the distance ranges 0, 1000, 2000, 3000, 4000, 5000, and 6000+, based on their average distance of all routes between them. Then how many pairs are there in the distance range with the fewest unique city paires?",
+        "external_knowledge": "haversine_formula.md",
+        "evidence": "Haversine formula: d = 2r · arcsin(√[sin²(Δφ/2) + cos(φ1)·cos(φ2)·sin²(Δλ/2)]). Earth radius r=6371 km. Convert degrees to radians: radians = degrees × π/180. Standardize routes: lexicographically smaller city as city1, larger as city2. Average distance = Σ flight distances / number of flights.",
+        "table": [
+            "airports_data",
+            "flights"
+        ],
+        "col": {
+            "airports_data": [],
+            "flights": []
+        },
+        "sample_history": {
+            "0": {
+                "airports_data": [],
+                "flights": []
+            },
+            "1": {
+                "airports_data": [],
+                "flights": []
+            },
+            "2": {
+                "airports_data": []
+            }
+        }
+    },
+    {
+        "instance_id": "local015",
+        "db": "California_Traffic_Collision",
+        "question": "Please calculate the fatality rate for motorcycle collisions, separated by helmet usage. Specifically, calculate two percentages: 1) the percentage of motorcyclist fatalities in collisions where parties (drivers or passengers) were wearing helmets, and 2) the percentage of motorcyclist fatalities in collisions where parties were not wearing helmets. For each group, compute this by dividing the total number of motorcyclist fatalities by the total number of collisions involving that group. Use the parties table to determine helmet usage (from party_safety_equipment fields).",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "collisions",
+            "parties"
+        ],
+        "col": {
+            "collisions": [],
+            "parties": []
+        },
+        "sample_history": {
+            "0": {
+                "collisions": [],
+                "parties": []
+            },
+            "1": {
+                "collisions": [],
+                "parties": []
+            },
+            "2": {
+                "parties": [],
+                "collisions": []
+            }
+        }
+    },
+    {
+        "instance_id": "local017",
+        "db": "California_Traffic_Collision",
+        "question": "In which year were the two most common causes of traffic accidents different from those in other years?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "collisions"
+        ],
+        "col": {
+            "collisions": []
+        },
+        "sample_history": {
+            "0": {
+                "collisions": []
+            },
+            "1": {
+                "collisions": []
+            },
+            "2": {
+                "collisions": []
+            }
+        }
+    },
+    {
+        "instance_id": "local018",
+        "db": "California_Traffic_Collision",
+        "question": "For the primary collision factor violation category that was the most common cause of traffic accidents in 2021, how many percentage points did its share of annual road incidents in 2021 decrease compared to its share in 2011?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "case_ids",
+            "collisions"
+        ],
+        "col": {
+            "case_ids": [],
+            "collisions": []
+        },
+        "sample_history": {
+            "0": {
+                "case_ids": [],
+                "collisions": []
+            },
+            "1": {
+                "collisions": [],
+                "case_ids": []
+            },
+            "2": {
+                "collisions": []
+            }
+        }
+    },
+    {
+        "instance_id": "local019",
+        "db": "WWE",
+        "question": "For the NXT title that had the shortest match (excluding titles with \"title change\"), what were the names of the two wrestlers involved?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "Belts",
+            "Matches",
+            "Wrestlers"
+        ],
+        "col": {
+            "Belts": [],
+            "Matches": [],
+            "Wrestlers": []
+        },
+        "sample_history": {
+            "0": {
+                "Belts": [],
+                "Matches": [],
+                "Wrestlers": []
+            },
+            "1": {
+                "Matches": [],
+                "Belts": [],
+                "Wrestlers": []
+            },
+            "2": {
+                "Belts": [],
+                "Matches": [],
+                "Wrestlers": []
+            }
+        }
+    },
+    {
+        "instance_id": "local026",
+        "db": "IPL",
+        "question": "Please help me identify the top 3 bowlers who, in the overs where the maximum runs were conceded in each match, gave up the highest number of runs in a single over across all matches. For each of these bowlers, provide the match in which they conceded these maximum runs. Only consider overs that had the most runs conceded within their respective matches, and among these, determine which bowlers conceded the most runs in a single over overall.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "ball_by_ball",
+            "batsman_scored",
+            "extra_runs",
+            "player"
+        ],
+        "col": {
+            "ball_by_ball": [],
+            "batsman_scored": [],
+            "extra_runs": [],
+            "player": []
+        },
+        "sample_history": {
+            "0": {
+                "ball_by_ball": [],
+                "batsman_scored": [],
+                "extra_runs": [],
+                "player": []
+            },
+            "1": {
+                "ball_by_ball": [],
+                "batsman_scored": [],
+                "extra_runs": [],
+                "player": []
+            },
+            "2": {
+                "batsman_scored": [],
+                "extra_runs": [],
+                "ball_by_ball": [],
+                "player": []
+            }
+        }
+    },
+    {
+        "instance_id": "local020",
+        "db": "IPL",
+        "question": "Which bowler has the lowest bowling average per wicket taken?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "ball_by_ball",
+            "batsman_scored",
+            "extra_runs",
+            "player",
+            "wicket_taken"
+        ],
+        "col": {
+            "ball_by_ball": [],
+            "batsman_scored": [],
+            "extra_runs": [],
+            "player": [],
+            "wicket_taken": []
+        },
+        "sample_history": {
+            "0": {
+                "ball_by_ball": [],
+                "player": [],
+                "batsman_scored": [],
+                "extra_runs": [],
+                "wicket_taken": []
+            },
+            "1": {
+                "ball_by_ball": [],
+                "batsman_scored": [],
+                "extra_runs": [],
+                "wicket_taken": [],
+                "player": []
+            },
+            "2": {
+                "ball_by_ball": [],
+                "wicket_taken": [],
+                "batsman_scored": [],
+                "extra_runs": [],
+                "player": []
+            }
+        }
+    },
+    {
+        "instance_id": "local021",
+        "db": "IPL",
+        "question": "Could you calculate the average of the total runs scored by all strikers who have scored more than 50 runs in any single match?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "ball_by_ball",
+            "batsman_scored"
+        ],
+        "col": {
+            "ball_by_ball": [],
+            "batsman_scored": []
+        },
+        "sample_history": {
+            "0": {
+                "batsman_scored": [],
+                "ball_by_ball": []
+            },
+            "1": {
+                "ball_by_ball": [],
+                "batsman_scored": []
+            },
+            "2": {
+                "ball_by_ball": [],
+                "batsman_scored": []
+            }
+        }
+    },
+    {
+        "instance_id": "local022",
+        "db": "IPL",
+        "question": "Retrieve the names of players who scored no less than 100 runs in a match while playing for the team that lost that match.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "ball_by_ball",
+            "batsman_scored",
+            "match",
+            "player",
+            "player_match"
+        ],
+        "col": {
+            "ball_by_ball": [],
+            "batsman_scored": [],
+            "match": [],
+            "player": [],
+            "player_match": []
+        },
+        "sample_history": {
+            "0": {
+                "ball_by_ball": [],
+                "batsman_scored": [],
+                "match": [],
+                "player_match": [],
+                "player": []
+            },
+            "1": {
+                "match": [],
+                "batsman_scored": [],
+                "ball_by_ball": [],
+                "player": []
+            },
+            "2": {
+                "batsman_scored": [],
+                "ball_by_ball": [],
+                "match": [],
+                "player_match": [],
+                "player": []
+            }
+        }
+    },
+    {
+        "instance_id": "local023",
+        "db": "IPL",
+        "question": "Please help me find the names of top 5 players with the highest average runs per match in season 5, along with their batting averages.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "ball_by_ball",
+            "batsman_scored",
+            "match",
+            "player",
+            "player_match",
+            "wicket_taken"
+        ],
+        "col": {
+            "ball_by_ball": [],
+            "batsman_scored": [],
+            "match": [],
+            "player": [],
+            "player_match": [],
+            "wicket_taken": []
+        },
+        "sample_history": {
+            "0": {
+                "match": [],
+                "batsman_scored": [],
+                "ball_by_ball": [],
+                "player_match": [],
+                "wicket_taken": [],
+                "player": []
+            },
+            "1": {
+                "match": [],
+                "batsman_scored": [],
+                "player_match": [],
+                "wicket_taken": [],
+                "player": []
+            },
+            "2": {
+                "match": [],
+                "ball_by_ball": [],
+                "batsman_scored": [],
+                "wicket_taken": [],
+                "player": []
+            }
+        }
+    },
+    {
+        "instance_id": "local024",
+        "db": "IPL",
+        "question": "Can you help me find the top 5 countries whose players have the highest average of their individual average runs per match across all seasons? Specifically, for each player, calculate their average runs per match over all matches they played, then compute the average of these player averages for each country, and include these country batting averages in the result.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "ball_by_ball",
+            "batsman_scored",
+            "player",
+            "player_match"
+        ],
+        "col": {
+            "ball_by_ball": [],
+            "batsman_scored": [],
+            "player": [],
+            "player_match": []
+        },
+        "sample_history": {
+            "0": {
+                "player": [],
+                "batsman_scored": [],
+                "player_match": [],
+                "ball_by_ball": []
+            },
+            "1": {
+                "player": [],
+                "batsman_scored": [],
+                "ball_by_ball": []
+            },
+            "2": {
+                "player": [],
+                "ball_by_ball": [],
+                "batsman_scored": []
+            }
+        }
+    },
+    {
+        "instance_id": "local025",
+        "db": "IPL",
+        "question": "For each match, considering every innings, please combine runs from both batsman scored and extra runs for each over, then identify the single over with the highest total runs, retrieve the bowler for that over from the ball by ball table, and calculate the average of these highest over totals across all matches, ensuring that all runs and bowler details are accurately reflected.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "ball_by_ball",
+            "batsman_scored",
+            "extra_runs"
+        ],
+        "col": {
+            "ball_by_ball": [],
+            "batsman_scored": [],
+            "extra_runs": []
+        },
+        "sample_history": {
+            "0": {
+                "ball_by_ball": [],
+                "batsman_scored": [],
+                "extra_runs": []
+            },
+            "1": {
+                "ball_by_ball": [],
+                "batsman_scored": [],
+                "extra_runs": []
+            },
+            "2": {
+                "ball_by_ball": [],
+                "batsman_scored": [],
+                "extra_runs": []
+            }
+        }
+    },
+    {
+        "instance_id": "local028",
+        "db": "Brazilian_E_Commerce",
+        "question": "Could you generate a report that shows the number of delivered orders for each month in the years 2016, 2017, and 2018? Each column represents a year, and each row represents a month",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "olist_orders"
+        ],
+        "col": {
+            "olist_orders": []
+        },
+        "sample_history": {
+            "0": {
+                "olist_orders": []
+            }
+        }
+    },
+    {
+        "instance_id": "local031",
+        "db": "Brazilian_E_Commerce",
+        "question": "What is the highest monthly delivered orders volume in the year with the lowest annual delivered orders volume among 2016, 2017, and 2018?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "olist_orders"
+        ],
+        "col": {
+            "olist_orders": []
+        },
+        "sample_history": {
+            "0": {
+                "olist_orders": []
+            }
+        }
+    },
+    {
+        "instance_id": "local029",
+        "db": "Brazilian_E_Commerce",
+        "question": "Please identify the top three customers, based on their customer_unique_id, who have the highest number of delivered orders, and provide the average payment value, city, and state for each of these customers.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "olist_customers",
+            "olist_order_payments",
+            "olist_orders"
+        ],
+        "col": {
+            "olist_customers": [],
+            "olist_order_payments": [],
+            "olist_orders": []
+        },
+        "sample_history": {
+            "0": {
+                "olist_orders": [],
+                "olist_customers": [],
+                "olist_order_payments": []
+            },
+            "1": {
+                "olist_customers": [],
+                "olist_orders": [],
+                "olist_order_payments": []
+            },
+            "2": {
+                "olist_orders": [],
+                "olist_customers": [],
+                "olist_order_payments": []
+            }
+        }
+    },
+    {
+        "instance_id": "local030",
+        "db": "Brazilian_E_Commerce",
+        "question": "Among all cities with delivered orders, find the five cities whose summed payments are the lowest, then calculate the average of their total payments and the average of their total delivered order counts.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "olist_customers",
+            "olist_order_payments",
+            "olist_orders"
+        ],
+        "col": {
+            "olist_customers": [],
+            "olist_order_payments": [],
+            "olist_orders": []
+        },
+        "sample_history": {
+            "0": {
+                "olist_orders": [],
+                "olist_customers": [],
+                "olist_order_payments": []
+            },
+            "1": {
+                "olist_orders": [],
+                "olist_customers": [],
+                "olist_order_payments": []
+            },
+            "2": {
+                "olist_orders": [],
+                "olist_customers": [],
+                "olist_order_payments": []
+            }
+        }
+    },
+    {
+        "instance_id": "local032",
+        "db": "Brazilian_E_Commerce",
+        "question": "Could you help me find the sellers who excel in the following categories, considering only delivered orders: the seller with the highest number of distinct customer unique IDs, the seller with the highest profit (calculated as price minus freight value), the seller with the highest number of distinct orders, and the seller with the most 5-star ratings? For each category, please provide the seller ID and the corresponding value, labeling each row with a description of the achievement.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "olist_customers",
+            "olist_order_items",
+            "olist_order_reviews",
+            "olist_orders"
+        ],
+        "col": {
+            "olist_customers": [],
+            "olist_order_items": [],
+            "olist_order_reviews": [],
+            "olist_orders": []
+        },
+        "sample_history": {
+            "0": {
+                "olist_order_items": [],
+                "olist_orders": [],
+                "olist_customers": [],
+                "olist_order_reviews": []
+            },
+            "1": {
+                "olist_order_items": [],
+                "olist_orders": [],
+                "olist_customers": [],
+                "olist_order_reviews": []
+            },
+            "2": {
+                "olist_order_items": [],
+                "olist_orders": [],
+                "olist_customers": [],
+                "olist_order_reviews": []
+            }
+        }
+    },
+    {
+        "instance_id": "local034",
+        "db": "Brazilian_E_Commerce",
+        "question": "Could you help me calculate the average of the total number of payments made using the most preferred payment method for each product category, where the most preferred payment method in a category is the one with the highest number of payments?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "olist_order_items",
+            "olist_order_payments",
+            "olist_orders",
+            "olist_products"
+        ],
+        "col": {
+            "olist_order_items": [],
+            "olist_order_payments": [],
+            "olist_orders": [],
+            "olist_products": []
+        },
+        "sample_history": {
+            "0": {
+                "olist_order_payments": [],
+                "olist_orders": [],
+                "olist_order_items": [],
+                "olist_products": []
+            },
+            "1": {
+                "olist_order_payments": [],
+                "olist_orders": [],
+                "olist_order_items": [],
+                "olist_products": []
+            },
+            "2": {
+                "olist_order_payments": [],
+                "olist_orders": [],
+                "olist_order_items": [],
+                "olist_products": []
+            }
+        }
+    },
+    {
+        "instance_id": "local037",
+        "db": "Brazilian_E_Commerce",
+        "question": "Identify the top three product categories whose most commonly used payment type has the highest number of payments across all categories, and specify the number of payments made in each category using that payment type.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "olist_order_items",
+            "olist_order_payments",
+            "olist_orders",
+            "olist_products"
+        ],
+        "col": {
+            "olist_order_items": [],
+            "olist_order_payments": [],
+            "olist_orders": [],
+            "olist_products": []
+        },
+        "sample_history": {
+            "0": {
+                "olist_orders": [],
+                "olist_order_payments": [],
+                "olist_order_items": [],
+                "olist_products": []
+            },
+            "1": {
+                "olist_order_payments": [],
+                "olist_orders": [],
+                "olist_order_items": [],
+                "olist_products": []
+            },
+            "2": {
+                "olist_order_payments": [],
+                "olist_orders": [],
+                "olist_order_items": [],
+                "olist_products": []
+            }
+        }
+    },
+    {
+        "instance_id": "local035",
+        "db": "Brazilian_E_Commerce",
+        "question": "In the “olist_geolocation” table, please identify which two consecutive cities, when sorted by geolocation_state, geolocation_city, geolocation_zip_code_prefix, geolocation_lat, and geolocation_lng, have the greatest distance between them based on the difference in distance computed between each city and its immediate predecessor in that ordering.",
+        "external_knowledge": "spherical_law.md",
+        "evidence": "Distance calculation formula: d = 6371 × arccos(cos(lat₁) × cos(lat₂) × cos(lon₂ - lon₁) + sin(lat₁) × sin(lat₂)). Key requirements: 1) Latitude/longitude inputs must be in radians, 2) Earth radius constant is 6371 km.",
+        "table": [
+            "olist_geolocation"
+        ],
+        "col": {
+            "olist_geolocation": []
+        },
+        "sample_history": {
+            "0": {
+                "olist_geolocation": []
+            }
+        }
+    },
+    {
+        "instance_id": "local038",
+        "db": "Pagila",
+        "question": "Could you help me determine which actor starred most frequently in English-language children's category films that were rated either G or PG, had a running time of 120 minutes or less, and were released between 2000 and 2010? Please provide the actor's full name.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "actor",
+            "category",
+            "film",
+            "film_actor",
+            "film_category",
+            "language"
+        ],
+        "col": {
+            "actor": [],
+            "category": [],
+            "film": [],
+            "film_actor": [],
+            "film_category": [],
+            "language": []
+        },
+        "sample_history": {
+            "0": {
+                "category": [],
+                "film": [],
+                "language": [],
+                "film_category": [],
+                "actor": [],
+                "film_actor": []
+            },
+            "1": {
+                "actor": [],
+                "category": [],
+                "film": [],
+                "language": [],
+                "film_category": [],
+                "film_actor": []
+            },
+            "2": {
+                "actor": [],
+                "category": [],
+                "language": [],
+                "film": [],
+                "film_category": [],
+                "film_actor": []
+            }
+        }
+    },
+    {
+        "instance_id": "local039",
+        "db": "Pagila",
+        "question": "Please help me find the film category with the highest total rental hours in cities where the city's name either starts with \"A\" or contains a hyphen. ",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "address",
+            "category",
+            "city",
+            "customer",
+            "film",
+            "film_category",
+            "inventory",
+            "rental"
+        ],
+        "col": {
+            "address": [],
+            "category": [],
+            "city": [],
+            "customer": [],
+            "film": [],
+            "film_category": [],
+            "inventory": [],
+            "rental": []
+        },
+        "sample_history": {
+            "0": {
+                "city": [],
+                "address": [],
+                "customer": [],
+                "rental": [],
+                "inventory": [],
+                "film": [],
+                "film_category": [],
+                "category": []
+            },
+            "1": {
+                "city": [],
+                "address": [],
+                "customer": [],
+                "rental": [],
+                "inventory": [],
+                "film": [],
+                "film_category": [],
+                "category": []
+            },
+            "2": {
+                "city": [],
+                "address": [],
+                "customer": [],
+                "rental": [],
+                "inventory": [],
+                "film": [],
+                "film_category": [],
+                "category": []
+            }
+        }
+    },
+    {
+        "instance_id": "local040",
+        "db": "modern_data",
+        "question": "In the combined dataset that unifies the trees data with the income data by ZIP code, filling missing ZIP values where necessary, which three boroughs, restricted to records with median and mean income both greater than zero and a valid borough name, contain the highest number of trees, and what is the average mean income for each of these three boroughs?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "income_trees",
+            "trees"
+        ],
+        "col": {
+            "income_trees": [],
+            "trees": []
+        },
+        "sample_history": {
+            "0": {
+                "trees": [],
+                "income_trees": []
+            },
+            "1": {
+                "trees": [],
+                "income_trees": []
+            },
+            "2": {
+                "trees": [],
+                "income_trees": []
+            }
+        }
+    },
+    {
+        "instance_id": "local041",
+        "db": "modern_data",
+        "question": "What percentage of trees in the Bronx have a health status of Good?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "trees"
+        ],
+        "col": {
+            "trees": []
+        },
+        "sample_history": {
+            "0": {
+                "trees": []
+            }
+        }
+    },
+    {
+        "instance_id": "local049",
+        "db": "modern_data",
+        "question": "Can you help me calculate the average number of new unicorn companies per year in the top industry from 2019 to 2021?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "companies_dates",
+            "companies_industries"
+        ],
+        "col": {
+            "companies_dates": [],
+            "companies_industries": []
+        },
+        "sample_history": {
+            "0": {
+                "companies_dates": [],
+                "companies_industries": []
+            },
+            "1": {
+                "companies_dates": [],
+                "companies_industries": []
+            },
+            "2": {
+                "companies_dates": [],
+                "companies_industries": []
+            }
+        }
+    },
+    {
+        "instance_id": "local054",
+        "db": "chinook",
+        "question": "Could you tell me the first names of customers who spent less than $1 on albums by the best-selling artist, along with the amounts they spent?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "albums",
+            "artists",
+            "customers",
+            "invoice_items",
+            "invoices",
+            "tracks"
+        ],
+        "col": {
+            "albums": [],
+            "artists": [],
+            "customers": [],
+            "invoice_items": [],
+            "invoices": [],
+            "tracks": []
+        },
+        "sample_history": {
+            "0": {
+                "artists": [],
+                "albums": [],
+                "tracks": [],
+                "invoice_items": [],
+                "invoices": [],
+                "customers": []
+            },
+            "1": {
+                "artists": [],
+                "albums": [],
+                "tracks": [],
+                "invoice_items": [],
+                "invoices": [],
+                "customers": []
+            },
+            "2": {
+                "artists": [],
+                "albums": [],
+                "tracks": [],
+                "invoice_items": [],
+                "customers": [],
+                "invoices": []
+            }
+        }
+    },
+    {
+        "instance_id": "local055",
+        "db": "chinook",
+        "question": "Identify the artist with the highest overall sales of albums (tie broken by alphabetical order) and the artist with the lowest overall sales of albums (tie broken by alphabetical order), then calculate the amount each customer spent specifically on those two artists’ albums. Next, compute the average spending for the customers who purchased from the top-selling artist and the average spending for the customers who purchased from the lowest-selling artist, and finally return the absolute difference between these two averages.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "albums",
+            "artists",
+            "customers",
+            "invoice_items",
+            "invoices",
+            "tracks"
+        ],
+        "col": {
+            "albums": [],
+            "artists": [],
+            "customers": [],
+            "invoice_items": [],
+            "invoices": [],
+            "tracks": []
+        },
+        "sample_history": {
+            "0": {
+                "artists": [],
+                "albums": [],
+                "tracks": [],
+                "invoice_items": [],
+                "customers": [],
+                "invoices": []
+            },
+            "1": {
+                "artists": [],
+                "albums": [],
+                "tracks": [],
+                "invoice_items": [],
+                "customers": [],
+                "invoices": []
+            },
+            "2": {
+                "artists": [],
+                "albums": [],
+                "tracks": [],
+                "invoice_items": [],
+                "customers": [],
+                "invoices": []
+            }
+        }
+    },
+    {
+        "instance_id": "local198",
+        "db": "chinook",
+        "question": "Using the sales data, what is the median value of total sales made in countries where the number of customers is greater than 4?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "customers",
+            "invoices"
+        ],
+        "col": {
+            "customers": [],
+            "invoices": []
+        },
+        "sample_history": {
+            "0": {
+                "customers": [],
+                "invoices": []
+            },
+            "1": {
+                "customers": [],
+                "invoices": []
+            },
+            "2": {
+                "customers": [],
+                "invoices": []
+            }
+        }
+    },
+    {
+        "instance_id": "local056",
+        "db": "sqlite-sakila",
+        "question": "Which customer has the highest average monthly change in payment amounts? Provide the customer's full name.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "customer",
+            "payment"
+        ],
+        "col": {
+            "customer": [],
+            "payment": []
+        },
+        "sample_history": {
+            "0": {
+                "customer": [],
+                "payment": []
+            },
+            "1": {
+                "payment": [],
+                "customer": []
+            },
+            "2": {
+                "customer": [],
+                "payment": []
+            }
+        }
+    },
+    {
+        "instance_id": "local058",
+        "db": "education_business",
+        "question": "Can you provide a list of hardware product segments along with their unique product counts for 2020 in the output, ordered by the highest percentage increase in unique fact sales products from 2020 to 2021?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "hardware_dim_product",
+            "hardware_fact_sales_monthly"
+        ],
+        "col": {
+            "hardware_dim_product": [],
+            "hardware_fact_sales_monthly": []
+        },
+        "sample_history": {
+            "0": {
+                "hardware_dim_product": [],
+                "hardware_fact_sales_monthly": []
+            },
+            "1": {
+                "hardware_dim_product": [],
+                "hardware_fact_sales_monthly": []
+            },
+            "2": {
+                "hardware_dim_product": [],
+                "hardware_fact_sales_monthly": []
+            }
+        }
+    },
+    {
+        "instance_id": "local059",
+        "db": "education_business",
+        "question": "For the calendar year 2021, what is the overall average quantity sold of the top three best-selling hardware products (by total quantity sold) in each division?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "hardware_dim_product",
+            "hardware_fact_sales_monthly"
+        ],
+        "col": {
+            "hardware_dim_product": [],
+            "hardware_fact_sales_monthly": []
+        },
+        "sample_history": {
+            "0": {
+                "hardware_fact_sales_monthly": [],
+                "hardware_dim_product": []
+            },
+            "1": {
+                "hardware_fact_sales_monthly": [],
+                "hardware_dim_product": []
+            },
+            "2": {
+                "hardware_fact_sales_monthly": [],
+                "hardware_dim_product": []
+            }
+        }
+    },
+    {
+        "instance_id": "local060",
+        "db": "complex_oracle",
+        "question": "In the United States, for Q4 2019 and Q4 2020, first select only those cities where total sales (with no promotions) rose by at least 20% from Q4 2019 to Q4 2020. Among these cities, rank products by their overall sales (still excluding promotions) in those quarters and take the top 20%. Then compute each top product’s share of total sales in Q4 2019 and Q4 2020 and calculate the difference in share from Q4 2019 to Q4 2020, returning the results in descending order of that share change.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "countries",
+            "customers",
+            "products",
+            "sales",
+            "times"
+        ],
+        "col": {
+            "countries": [],
+            "customers": [],
+            "products": [],
+            "sales": [],
+            "times": []
+        },
+        "sample_history": {
+            "0": {
+                "customers": [],
+                "countries": [],
+                "sales": [],
+                "times": [],
+                "products": []
+            },
+            "1": {
+                "customers": [],
+                "countries": [],
+                "sales": [],
+                "times": [],
+                "products": []
+            },
+            "2": {
+                "customers": [],
+                "countries": [],
+                "times": [],
+                "sales": [],
+                "products": []
+            }
+        }
+    },
+    {
+        "instance_id": "local063",
+        "db": "complex_oracle",
+        "question": "Among all products sold in the United States with promo_id=999, considering only those cities whose sales increased by at least 20% from Q4 2019 (calendar_quarter_id=1772) to Q4 2020 (calendar_quarter_id=1776), which product that ranks in the top 20% of total sales has the smallest percentage-point change in its share of total sales between these two quarters?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "countries",
+            "customers",
+            "products",
+            "sales",
+            "times"
+        ],
+        "col": {
+            "countries": [],
+            "customers": [],
+            "products": [],
+            "sales": [],
+            "times": []
+        },
+        "sample_history": {
+            "0": {
+                "sales": [],
+                "customers": [],
+                "countries": [],
+                "times": []
+            },
+            "1": {
+                "sales": [],
+                "customers": [],
+                "countries": [],
+                "times": [],
+                "products": []
+            },
+            "2": {
+                "sales": [],
+                "customers": [],
+                "countries": [],
+                "times": []
+            }
+        }
+    },
+    {
+        "instance_id": "local061",
+        "db": "complex_oracle",
+        "question": "What is the average projected monthly sales in USD for France in 2021, considering only product sales with promotions where promo_total_id = 1 and channels where channel_total_id = 1, by taking each product’s monthly sales from 2019 and 2020, calculating the growth rate from 2019 to 2020 for that same product and month, applying this growth rate to project 2021 monthly sales, converting all projected 2021 amounts to USD with the 2021 exchange rates, and finally averaging and listing them by month?",
+        "external_knowledge": "projection_calculation.md",
+        "evidence": "Project 2021 sales using: (((Sales_2020 - Sales_2019) / Sales_2019) * Sales_2020) + Sales_2020. For non-2021 data, use monthly average sales. Convert to USD using monthly conversion rates (default rate: 1). Round results to two decimal places.",
+        "table": [
+            "channels",
+            "countries",
+            "currency",
+            "customers",
+            "promotions",
+            "sales",
+            "times"
+        ],
+        "col": {
+            "channels": [],
+            "countries": [],
+            "currency": [],
+            "customers": [],
+            "promotions": [],
+            "sales": [],
+            "times": []
+        },
+        "sample_history": {
+            "0": {
+                "countries": [],
+                "channels": [],
+                "promotions": [],
+                "sales": [],
+                "customers": [],
+                "times": [],
+                "currency": []
+            },
+            "1": {
+                "countries": [],
+                "promotions": [],
+                "channels": [],
+                "sales": [],
+                "times": [],
+                "customers": [],
+                "currency": []
+            },
+            "2": {
+                "sales": [],
+                "customers": [],
+                "countries": [],
+                "times": [],
+                "promotions": [],
+                "channels": [],
+                "currency": []
+            }
+        }
+    },
+    {
+        "instance_id": "local050",
+        "db": "complex_oracle",
+        "question": "What is the median of the average monthly projected sales in USD for France in 2021, calculated by using the monthly sales data from 2019 and 2020 (filtered by promo_total_id=1 and channel_total_id=1), applying the growth rate from 2019 to 2020 to project 2021, converting to USD based on the currency table, and then determining the monthly averages before finding their median?",
+        "external_knowledge": "projection_calculation.md",
+        "evidence": "Projection formula for 2021: (((Sales_2020 - Sales_2019) / Sales_2019) * Sales_2020) + Sales_2020. Currency conversion: Use monthly rates to USD, default to 1 if unavailable. Round results to two decimals. Process: Aggregate sales by product/country/month/year, compute monthly averages, apply 2019→2020 trend to project 2021.",
+        "table": [
+            "channels",
+            "countries",
+            "currency",
+            "customers",
+            "promotions",
+            "sales",
+            "times"
+        ],
+        "col": {
+            "channels": [],
+            "countries": [],
+            "currency": [],
+            "customers": [],
+            "promotions": [],
+            "sales": [],
+            "times": []
+        },
+        "sample_history": {
+            "0": {
+                "sales": [],
+                "times": [],
+                "customers": [],
+                "countries": [],
+                "promotions": [],
+                "channels": [],
+                "currency": []
+            },
+            "1": {
+                "sales": [],
+                "customers": [],
+                "countries": [],
+                "promotions": [],
+                "channels": [],
+                "currency": []
+            },
+            "2": {
+                "sales": [],
+                "customers": [],
+                "countries": [],
+                "times": [],
+                "promotions": [],
+                "channels": [],
+                "currency": []
+            }
+        }
+    },
+    {
+        "instance_id": "local062",
+        "db": "complex_oracle",
+        "question": "Please group all Italian customers into ten buckets for December 2021 by summing their profits from all products purchased (where profit is calculated as quantity_sold multiplied by the difference between unit_price and unit_cost), then divide the overall range of total monthly profits into ten equal intervals. For each bucket, provide the number of customers, and identify the minimum and maximum total profits within that bucket.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "costs",
+            "countries",
+            "customers",
+            "sales",
+            "times"
+        ],
+        "col": {
+            "costs": [],
+            "countries": [],
+            "customers": [],
+            "sales": [],
+            "times": []
+        },
+        "sample_history": {
+            "0": {
+                "countries": [],
+                "times": [],
+                "customers": [],
+                "sales": [],
+                "costs": []
+            },
+            "1": {
+                "customers": [],
+                "countries": [],
+                "times": [],
+                "sales": [],
+                "costs": []
+            },
+            "2": {
+                "countries": [],
+                "sales": [],
+                "times": [],
+                "costs": [],
+                "customers": []
+            }
+        }
+    },
+    {
+        "instance_id": "local067",
+        "db": "complex_oracle",
+        "question": "Can you provide the highest and lowest profits for Italian customers segmented into ten evenly divided tiers based on their December 2021 sales profits?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "costs",
+            "countries",
+            "customers",
+            "sales",
+            "times"
+        ],
+        "col": {
+            "costs": [],
+            "countries": [],
+            "customers": [],
+            "sales": [],
+            "times": []
+        },
+        "sample_history": {
+            "0": {
+                "countries": [],
+                "times": [],
+                "customers": [],
+                "sales": [],
+                "costs": []
+            },
+            "1": {
+                "customers": [],
+                "countries": [],
+                "sales": [],
+                "times": [],
+                "costs": []
+            },
+            "2": {
+                "countries": [],
+                "customers": [],
+                "sales": [],
+                "times": [],
+                "costs": []
+            }
+        }
+    },
+    {
+        "instance_id": "local070",
+        "db": "city_legislation",
+        "question": "Please examine our database records for Chinese cities (country_code_2 = 'cn') during July 2021 and identify both the shortest and longest streaks of consecutive date entries. For each date in these streaks, return exactly one record per date along with the corresponding city name. In your output, please ensure the first letter of each city name is capitalized and the rest are lowercase. Display the dates and city names for both the shortest and longest consecutive date streaks, ordered by date.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "cities",
+            "legislation_date_dim"
+        ],
+        "col": {
+            "cities": [],
+            "legislation_date_dim": []
+        },
+        "sample_history": {
+            "0": {
+                "cities": [],
+                "legislation_date_dim": []
+            },
+            "1": {
+                "cities": [],
+                "legislation_date_dim": []
+            },
+            "2": {
+                "cities": [],
+                "legislation_date_dim": []
+            }
+        }
+    },
+    {
+        "instance_id": "local071",
+        "db": "city_legislation",
+        "question": "Could you review our records in June 2022 and identify which countries have the longest streak of consecutive inserted city dates? Please list the 2-letter length country codes of these countries.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "cities"
+        ],
+        "col": {
+            "cities": []
+        },
+        "sample_history": {
+            "0": {
+                "cities": []
+            }
+        }
+    },
+    {
+        "instance_id": "local072",
+        "db": "city_legislation",
+        "question": "Identify the country with data inserted on nine different days in January 2022. Then, find the longest consecutive period with data insertions for this country during January 2022, and calculate the proportion of entries that are from its capital city within this longest consecutive insertion period.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "cities",
+            "cities_countries"
+        ],
+        "col": {
+            "cities": [],
+            "cities_countries": []
+        },
+        "sample_history": {
+            "0": {
+                "cities": [],
+                "cities_countries": []
+            },
+            "1": {
+                "cities": [],
+                "cities_countries": []
+            },
+            "2": {
+                "cities": [],
+                "cities_countries": []
+            }
+        }
+    },
+    {
+        "instance_id": "local068",
+        "db": "city_legislation",
+        "question": "Calculate the number of new cities inserted in April, May, and June for each year from 2021 to 2023. For each month, compute the cumulative running total of cities added for that specific month across the years up to and including the given year (i.e., sum the counts of that month over the years). Additionally, calculate the year-over-year growth percentages for both the monthly total and the running total for each month, comparing each year to the previous year. Present the results only for 2022 and 2023, listing the year, the month, the total number of cities added in that month, the cumulative running total for that month, and the year-over-year growth percentages for both the monthly total and the running total. Use the data from 2021 solely as a baseline for calculating growth rates, and exclude it from the final output.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "cities"
+        ],
+        "col": {
+            "cities": []
+        },
+        "sample_history": {
+            "0": {
+                "cities": []
+            }
+        }
+    },
+    {
+        "instance_id": "local073",
+        "db": "modern_data",
+        "question": "For each pizza order, provide a single result row with the row ID, order ID, customer ID, pizza name, and final set of ingredients. The final ingredients are determined by starting with the standard toppings from the pizza’s recipe, removing any excluded toppings, and adding any extra toppings. Present the ingredients in a string starting with the pizza name followed by ': ', with ingredients listed in alphabetical order. Ingredients appearing multiple times (e.g., from standard and extra toppings) should be prefixed with '2x' and listed first, followed by single-occurrence ingredients, both in alphabetical order. Group by row ID, order ID, pizza name, and order time to ensure each order appears once. Sort results by row ID in ascending order. Assign pizza_id 1 to 'Meatlovers' pizzas and pizza_id 2 to all others.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "pizza_clean_customer_orders",
+            "pizza_get_exclusions",
+            "pizza_get_extras",
+            "pizza_names",
+            "pizza_recipes",
+            "pizza_toppings"
+        ],
+        "col": {
+            "pizza_clean_customer_orders": [],
+            "pizza_get_exclusions": [],
+            "pizza_get_extras": [],
+            "pizza_names": [],
+            "pizza_recipes": [],
+            "pizza_toppings": []
+        },
+        "sample_history": {
+            "0": {
+                "pizza_clean_customer_orders": [],
+                "pizza_names": [],
+                "pizza_recipes": [],
+                "pizza_toppings": [],
+                "pizza_get_exclusions": [],
+                "pizza_get_extras": []
+            },
+            "1": {
+                "pizza_clean_customer_orders": [],
+                "pizza_names": [],
+                "pizza_recipes": [],
+                "pizza_get_exclusions": [],
+                "pizza_get_extras": [],
+                "pizza_toppings": []
+            },
+            "2": {
+                "pizza_clean_customer_orders": [],
+                "pizza_names": [],
+                "pizza_recipes": [],
+                "pizza_toppings": []
+            }
+        }
+    },
+    {
+        "instance_id": "local066",
+        "db": "modern_data",
+        "question": "Based on our customer pizza order information, summarize the total quantity of each ingredient used in the pizzas we delivered. Output the name and quantity for each ingredient.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "pizza_clean_customer_orders",
+            "pizza_get_exclusions",
+            "pizza_get_extras",
+            "pizza_names",
+            "pizza_recipes",
+            "pizza_toppings"
+        ],
+        "col": {
+            "pizza_clean_customer_orders": [],
+            "pizza_get_exclusions": [],
+            "pizza_get_extras": [],
+            "pizza_names": [],
+            "pizza_recipes": [],
+            "pizza_toppings": []
+        },
+        "sample_history": {
+            "0": {
+                "pizza_names": [],
+                "pizza_recipes": [],
+                "pizza_toppings": [],
+                "pizza_clean_customer_orders": [],
+                "pizza_get_exclusions": [],
+                "pizza_get_extras": []
+            },
+            "1": {
+                "pizza_names": [],
+                "pizza_recipes": [],
+                "pizza_get_exclusions": [],
+                "pizza_get_extras": [],
+                "pizza_clean_customer_orders": [],
+                "pizza_toppings": []
+            },
+            "2": {
+                "pizza_toppings": [],
+                "pizza_recipes": [],
+                "pizza_names": [],
+                "pizza_clean_customer_orders": []
+            }
+        }
+    },
+    {
+        "instance_id": "local065",
+        "db": "modern_data",
+        "question": "Calculate the total income from Meat Lovers pizzas priced at $12 and Vegetarian pizzas at $10. Include any extra toppings charged at $1 each. Ensure that canceled orders are filtered out. How much money has Pizza Runner earned in total?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "pizza_clean_customer_orders",
+            "pizza_clean_runner_orders",
+            "pizza_get_extras",
+            "pizza_names"
+        ],
+        "col": {
+            "pizza_clean_customer_orders": [],
+            "pizza_clean_runner_orders": [],
+            "pizza_get_extras": [],
+            "pizza_names": []
+        },
+        "sample_history": {
+            "0": {
+                "pizza_names": [],
+                "pizza_clean_runner_orders": [],
+                "pizza_clean_customer_orders": [],
+                "pizza_get_extras": []
+            },
+            "1": {
+                "pizza_clean_customer_orders": [],
+                "pizza_names": [],
+                "pizza_clean_runner_orders": [],
+                "pizza_get_extras": []
+            },
+            "2": {
+                "pizza_clean_customer_orders": [],
+                "pizza_names": [],
+                "pizza_clean_runner_orders": [],
+                "pizza_get_extras": []
+            }
+        }
+    },
+    {
+        "instance_id": "local074",
+        "db": "bank_sales_trading",
+        "question": "Please generate a summary of the closing balances at the end of each month for each customer transactions, show the monthly changes and monthly cumulative bank account balances. Ensure that even if a customer has no account activity in a given month, the balance for that month is still included in the output.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "customer_transactions"
+        ],
+        "col": {
+            "customer_transactions": []
+        },
+        "sample_history": {
+            "0": {
+                "customer_transactions": []
+            }
+        }
+    },
+    {
+        "instance_id": "local064",
+        "db": "bank_sales_trading",
+        "question": "For each customer and each month of 2020, first calculate the month-end balance by adding all deposit amounts and subtracting all withdrawal amounts that occurred during that specific month. Then determine which month in 2020 has the highest count of customers with a positive month-end balance and which month has the lowest count. For each of these two months, compute the average month-end balance across all customers and provide the difference between these two averages",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "customer_transactions"
+        ],
+        "col": {
+            "customer_transactions": []
+        },
+        "sample_history": {
+            "0": {
+                "customer_transactions": []
+            }
+        }
+    },
+    {
+        "instance_id": "local297",
+        "db": "bank_sales_trading",
+        "question": "For each customer, group all deposits and withdrawals by the first day of each month to obtain a monthly net amount, then calculate each month’s closing balance by cumulatively summing these monthly nets. Next, determine the most recent month’s growth rate by comparing its closing balance to the prior month’s balance, treating deposits as positive and withdrawals as negative, and if the previous month’s balance is zero, the growth rate should be the current month’s balance multiplied by 100. Finally, compute the percentage of customers whose most recent month shows a growth rate of more than 5%.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "customer_transactions"
+        ],
+        "col": {
+            "customer_transactions": []
+        },
+        "sample_history": {
+            "0": {
+                "customer_transactions": []
+            }
+        }
+    },
+    {
+        "instance_id": "local298",
+        "db": "bank_sales_trading",
+        "question": "For each month, calculate the total balance from all users for the previous month (measured as of the 1st of each month), replacing any negative balances with zero. Ensure that data from the first month is used only as a baseline for calculating previous total balance, and exclude it from the final output. Sort the results in ascending order by month. ",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "customer_transactions"
+        ],
+        "col": {
+            "customer_transactions": []
+        },
+        "sample_history": {
+            "0": {
+                "customer_transactions": []
+            }
+        }
+    },
+    {
+        "instance_id": "local299",
+        "db": "bank_sales_trading",
+        "question": "For a bank database with customer transactions, calculate each customer's daily running balance (where deposits add to the balance and other transaction types subtract). For each customer and each day, compute the 30-day rolling average balance (only after having 30 days of data, and treating negative averages as zero). Then group these daily averages by month and find each customer's maximum 30-day average balance within each month. Sum these maximum values across all customers for each month. Consider the first month of each customer's transaction history as the baseline period and exclude it from the final results, presenting monthly totals of these summed maximum 30-day average balances.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "customer_transactions"
+        ],
+        "col": {
+            "customer_transactions": []
+        },
+        "sample_history": {
+            "0": {
+                "customer_transactions": []
+            }
+        }
+    },
+    {
+        "instance_id": "local300",
+        "db": "bank_sales_trading",
+        "question": "For each customer, calculate their daily balances for every day between their earliest and latest transaction dates, including days without transactions by carrying forward the previous day's balance. Treat any negative daily balances as zero. Then, for each month, determine the highest daily balance each customer had during that month. Finally, for each month, sum these maximum daily balances across all customers to obtain a monthly total.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "customer_transactions"
+        ],
+        "col": {
+            "customer_transactions": []
+        },
+        "sample_history": {
+            "0": {
+                "customer_transactions": []
+            }
+        }
+    },
+    {
+        "instance_id": "local075",
+        "db": "bank_sales_trading",
+        "question": "Can you provide a breakdown of how many times each product was viewed, how many times they were added to the shopping cart, and how many times they were left in the cart without being purchased? Also, give me the count of actual purchases for each product. Ensure that products with a page id in (1, 2, 12, 13) are filtered out.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "shopping_cart_event_identifier",
+            "shopping_cart_events",
+            "shopping_cart_page_hierarchy"
+        ],
+        "col": {
+            "shopping_cart_event_identifier": [],
+            "shopping_cart_events": [],
+            "shopping_cart_page_hierarchy": []
+        },
+        "sample_history": {
+            "0": {
+                "shopping_cart_event_identifier": [],
+                "shopping_cart_events": [],
+                "shopping_cart_page_hierarchy": []
+            },
+            "1": {
+                "shopping_cart_event_identifier": [],
+                "shopping_cart_events": [],
+                "shopping_cart_page_hierarchy": []
+            },
+            "2": {
+                "shopping_cart_event_identifier": [],
+                "shopping_cart_page_hierarchy": [],
+                "shopping_cart_events": []
+            }
+        }
+    },
+    {
+        "instance_id": "local077",
+        "db": "bank_sales_trading",
+        "question": "Please analyze our interest data from September 2018 to August 2019. For each month, calculate the average composition for each interest by dividing the composition by the index value. Identify the interest with the highest average composition value each month and report its average composition as the max index composition for that month. Compute the three-month rolling average of these monthly max index compositions. Ensure the output includes the date, the interest name, the max index composition for that month, the rolling average, and the names and max index compositions of the top interests from one month ago and two months ago.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "interest_map",
+            "interest_metrics"
+        ],
+        "col": {
+            "interest_map": [],
+            "interest_metrics": []
+        },
+        "sample_history": {
+            "0": {
+                "interest_metrics": [],
+                "interest_map": []
+            },
+            "1": {
+                "interest_metrics": [],
+                "interest_map": []
+            },
+            "2": {
+                "interest_metrics": [],
+                "interest_map": []
+            }
+        }
+    },
+    {
+        "instance_id": "local078",
+        "db": "bank_sales_trading",
+        "question": "Identify the top 10 and bottom 10 interest categories based on their highest composition values across all months. For each category, display the time(MM-YYYY), interest name, and the composition value",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "interest_map",
+            "interest_metrics"
+        ],
+        "col": {
+            "interest_map": [],
+            "interest_metrics": []
+        },
+        "sample_history": {
+            "0": {
+                "interest_map": [],
+                "interest_metrics": []
+            },
+            "1": {
+                "interest_metrics": [],
+                "interest_map": []
+            },
+            "2": {
+                "interest_map": [],
+                "interest_metrics": []
+            }
+        }
+    },
+    {
+        "instance_id": "local081",
+        "db": "northwind",
+        "question": "Considering only the customers who placed orders in 1998, calculate the total amount each customer spent by summing the unit price multiplied by the quantity of all products in their orders, excluding any discounts. Assign each customer to a spending group based on the customer group thresholds, and determine how many customers are in each spending group and what percentage of the total number of customers who placed orders in 1998 each group represents.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "customergroupthreshold",
+            "customers",
+            "order_details",
+            "orders"
+        ],
+        "col": {
+            "customergroupthreshold": [],
+            "customers": [],
+            "order_details": [],
+            "orders": []
+        },
+        "sample_history": {
+            "0": {
+                "customers": [],
+                "orders": [],
+                "order_details": [],
+                "customergroupthreshold": []
+            },
+            "1": {
+                "customergroupthreshold": [],
+                "customers": [],
+                "orders": [],
+                "order_details": []
+            },
+            "2": {
+                "customers": [],
+                "orders": [],
+                "order_details": [],
+                "customergroupthreshold": []
+            }
+        }
+    },
+    {
+        "instance_id": "local085",
+        "db": "northwind",
+        "question": "Among employees who have more than 50 total orders, which three have the highest percentage of late orders, where an order is considered late if the shipped date is on or after its required date? Please list each employee's ID, the number of late orders, and the corresponding late-order percentage.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "orders"
+        ],
+        "col": {
+            "orders": []
+        },
+        "sample_history": {
+            "0": {
+                "orders": []
+            }
+        }
+    },
+    {
+        "instance_id": "local096",
+        "db": "Db-IMDB",
+        "question": "For each year, calculate the percentage of films that had exclusively female actors (meaning no male actors and no actors with unknown/unspecified gender). Consider actors with gender marked as 'Male' or 'None' as non-female. For the results, display the year, the total number of movies in that year, and the percentage of movies with exclusively female actors. Extract the year from the Movie.year field by taking the last 4 characters and converting to a number.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "M_Cast",
+            "Movie",
+            "Person"
+        ],
+        "col": {
+            "M_Cast": [],
+            "Movie": [],
+            "Person": []
+        },
+        "sample_history": {
+            "0": {
+                "Movie": [],
+                "Person": [],
+                "M_Cast": []
+            },
+            "1": {
+                "Movie": [],
+                "M_Cast": [],
+                "Person": []
+            },
+            "2": {
+                "Movie": [],
+                "M_Cast": [],
+                "Person": []
+            }
+        }
+    },
+    {
+        "instance_id": "local097",
+        "db": "Db-IMDB",
+        "question": "Could you analyze our data and identify which ten-year period starting from any movie release year present in the data had the largest number of films, considering consecutive ten-year periods beginning at each unique year? Only output the start year and the total count for that specific period.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "Movie"
+        ],
+        "col": {
+            "Movie": []
+        },
+        "sample_history": {
+            "0": {
+                "Movie": []
+            }
+        }
+    },
+    {
+        "instance_id": "local098",
+        "db": "Db-IMDB",
+        "question": "From the first year each actor appeared in a film to the last, how many actors in the database never had a gap longer than three consecutive years without at least one new movie appearance, meaning there is no four-year span anywhere in their active career without at least a single film credit?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "M_Cast",
+            "Movie",
+            "Person"
+        ],
+        "col": {
+            "M_Cast": [],
+            "Movie": [],
+            "Person": []
+        },
+        "sample_history": {
+            "0": {
+                "Person": [],
+                "M_Cast": [],
+                "Movie": []
+            },
+            "1": {
+                "Person": [],
+                "M_Cast": [],
+                "Movie": []
+            },
+            "2": {
+                "Person": [],
+                "M_Cast": [],
+                "Movie": []
+            }
+        }
+    },
+    {
+        "instance_id": "local099",
+        "db": "Db-IMDB",
+        "question": "I need you to look into the actor collaborations and tell me how many actors have made more films with Yash Chopra than with any other director. This will help us understand his influence on the industry better.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "M_Cast",
+            "M_Director",
+            "Person"
+        ],
+        "col": {
+            "M_Cast": [],
+            "M_Director": [],
+            "Person": []
+        },
+        "sample_history": {
+            "0": {
+                "Person": [],
+                "M_Director": [],
+                "M_Cast": []
+            },
+            "1": {
+                "Person": [],
+                "M_Director": [],
+                "M_Cast": []
+            },
+            "2": {
+                "Person": [],
+                "M_Director": [],
+                "M_Cast": []
+            }
+        }
+    },
+    {
+        "instance_id": "local100",
+        "db": "Db-IMDB",
+        "question": "Find out how many actors have a 'Shahrukh number' of 2? This means they acted in a film with someone who acted with Shahrukh Khan, but not directly with him.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "M_Cast",
+            "Person"
+        ],
+        "col": {
+            "M_Cast": [],
+            "Person": []
+        },
+        "sample_history": {
+            "0": {
+                "Person": [],
+                "M_Cast": []
+            },
+            "1": {
+                "Person": [],
+                "M_Cast": []
+            },
+            "2": {
+                "Person": [],
+                "M_Cast": []
+            }
+        }
+    },
+    {
+        "instance_id": "local114",
+        "db": "education_business",
+        "question": "Provide a detailed web sales report for each region, including the number of orders, total sales amount, and the name and sales amount of all sales representatives who achieved the highest total sales amount in that region (include all representatives in case of a tie).",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "web_accounts",
+            "web_orders",
+            "web_region",
+            "web_sales_reps"
+        ],
+        "col": {
+            "web_accounts": [],
+            "web_orders": [],
+            "web_region": [],
+            "web_sales_reps": []
+        },
+        "sample_history": {
+            "0": {
+                "web_region": [],
+                "web_sales_reps": [],
+                "web_accounts": [],
+                "web_orders": []
+            },
+            "1": {
+                "web_region": [],
+                "web_sales_reps": [],
+                "web_accounts": [],
+                "web_orders": []
+            },
+            "2": {
+                "web_region": [],
+                "web_sales_reps": [],
+                "web_accounts": [],
+                "web_orders": []
+            }
+        }
+    },
+    {
+        "instance_id": "local128",
+        "db": "BowlingLeague",
+        "question": "List the bowlers (including their ID, first name, and last name), match number, game number, handicap score, tournament date, and location for only those bowlers who have won games with a handicap score of 190 or less at all three venues: Thunderbird Lanes, Totem Lanes, and Bolero Lanes. Only include the specific game records where they won with a handicap score of 190 or less at these three locations.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "Bowler_Scores",
+            "Bowlers",
+            "Tournaments",
+            "Tourney_Matches"
+        ],
+        "col": {
+            "Bowler_Scores": [],
+            "Bowlers": [],
+            "Tournaments": [],
+            "Tourney_Matches": []
+        },
+        "sample_history": {
+            "0": {
+                "Bowlers": [],
+                "Bowler_Scores": [],
+                "Tourney_Matches": [],
+                "Tournaments": []
+            },
+            "1": {
+                "Bowlers": [],
+                "Tournaments": [],
+                "Bowler_Scores": [],
+                "Tourney_Matches": []
+            },
+            "2": {
+                "Bowlers": [],
+                "Bowler_Scores": [],
+                "Tourney_Matches": [],
+                "Tournaments": []
+            }
+        }
+    },
+    {
+        "instance_id": "local130",
+        "db": "school_scheduling",
+        "question": "Could you provide a list of last names for all students who have completed English courses (where completion is defined as having a ClassStatus of 2), along with their quintile ranks based on their individual grades in those courses? The quintile should be determined by calculating how many students have grades greater than or equal to each student's grade, then dividing this ranking by the total number of students who completed English courses. The quintiles should be labeled as \"First\" (top 20%), \"Second\" (top 21-40%), \"Third\" (top 41-60%), \"Fourth\" (top 61-80%), and \"Fifth\" (bottom 20%). Please sort the results from highest performing quintile to lowest (First to Fifth).",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "Categories",
+            "Classes",
+            "Student_Class_Status",
+            "Student_Schedules",
+            "Students",
+            "Subjects"
+        ],
+        "col": {
+            "Categories": [],
+            "Classes": [],
+            "Student_Class_Status": [],
+            "Student_Schedules": [],
+            "Students": [],
+            "Subjects": []
+        },
+        "sample_history": {
+            "0": {
+                "Student_Class_Status": [],
+                "Categories": [],
+                "Subjects": [],
+                "Students": [],
+                "Student_Schedules": [],
+                "Classes": []
+            },
+            "1": {
+                "Categories": [],
+                "Subjects": [],
+                "Students": [],
+                "Student_Schedules": [],
+                "Classes": []
+            },
+            "2": {
+                "Categories": [],
+                "Subjects": [],
+                "Student_Class_Status": [],
+                "Students": [],
+                "Student_Schedules": [],
+                "Classes": []
+            }
+        }
+    },
+    {
+        "instance_id": "local131",
+        "db": "EntertainmentAgency",
+        "question": "Could you list each musical style with the number of times it appears as a 1st, 2nd, or 3rd preference in a single row per style?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "Musical_Preferences",
+            "Musical_Styles"
+        ],
+        "col": {
+            "Musical_Preferences": [],
+            "Musical_Styles": []
+        },
+        "sample_history": {
+            "0": {
+                "Musical_Styles": [],
+                "Musical_Preferences": []
+            },
+            "1": {
+                "Musical_Styles": [],
+                "Musical_Preferences": []
+            },
+            "2": {
+                "Musical_Preferences": [],
+                "Musical_Styles": []
+            }
+        }
+    },
+    {
+        "instance_id": "local133",
+        "db": "EntertainmentAgency",
+        "question": "Given a database of musical styles and user preferences, where Musical_Preferences contains user rankings of musical styles (PreferenceSeq=1 for first choice, PreferenceSeq=2 for second choice, PreferenceSeq=3 for third choice): Calculate a weighted score for each musical style by assigning 3 points for each time it was ranked as first choice, 2 points for each second choice, and 1 point for each third choice ranking. Calculate the total weighted score for each musical style that has been ranked by at least one user. Then, compute the absolute difference between each style's total weighted score and the average total weighted score across all such styles.\t",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "Musical_Preferences",
+            "Musical_Styles"
+        ],
+        "col": {
+            "Musical_Preferences": [],
+            "Musical_Styles": []
+        },
+        "sample_history": {
+            "0": {
+                "Musical_Preferences": [],
+                "Musical_Styles": []
+            },
+            "1": {
+                "Musical_Preferences": [],
+                "Musical_Styles": []
+            },
+            "2": {
+                "Musical_Preferences": [],
+                "Musical_Styles": []
+            }
+        }
+    },
+    {
+        "instance_id": "local132",
+        "db": "EntertainmentAgency",
+        "question": "Show all pairs of entertainers and customers who each have up to three style strengths or preferences, where the first and second style preferences of the customers match the first and second style strengths of the entertainers (or in reverse order). Only return the entertainer’s stage name and the customer’s last name",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "Customers",
+            "Entertainer_Styles",
+            "Entertainers",
+            "Musical_Preferences",
+            "Musical_Styles"
+        ],
+        "col": {
+            "Customers": [],
+            "Entertainer_Styles": [],
+            "Entertainers": [],
+            "Musical_Preferences": [],
+            "Musical_Styles": []
+        },
+        "sample_history": {
+            "0": {
+                "Musical_Preferences": [],
+                "Entertainer_Styles": [],
+                "Customers": [],
+                "Entertainers": []
+            },
+            "1": {
+                "Customers": [],
+                "Musical_Preferences": [],
+                "Musical_Styles": [],
+                "Entertainers": [],
+                "Entertainer_Styles": []
+            },
+            "2": {
+                "Customers": [],
+                "Musical_Preferences": [],
+                "Entertainers": [],
+                "Entertainer_Styles": []
+            }
+        }
+    },
+    {
+        "instance_id": "local141",
+        "db": "AdventureWorks",
+        "question": "How did each salesperson's annual total sales compare to their annual sales quota? Provide the difference between their total sales and the quota for each year, organized by salesperson and year.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "SalesPersonQuotaHistory",
+            "salesorderdetail",
+            "salesorderheader",
+            "salesperson"
+        ],
+        "col": {
+            "SalesPersonQuotaHistory": [],
+            "salesorderdetail": [],
+            "salesorderheader": [],
+            "salesperson": []
+        },
+        "sample_history": {
+            "0": {
+                "SalesPersonQuotaHistory": [],
+                "salesorderheader": [],
+                "salesorderdetail": [],
+                "salesperson": []
+            },
+            "1": {
+                "SalesPersonQuotaHistory": [],
+                "salesorderheader": [],
+                "salesperson": []
+            },
+            "2": {
+                "SalesPersonQuotaHistory": [],
+                "salesorderheader": [],
+                "salesorderdetail": [],
+                "salesperson": []
+            }
+        }
+    },
+    {
+        "instance_id": "local152",
+        "db": "imdb_movies",
+        "question": "Can you provide the top 9 directors by movie count, including their ID, name, number of movies, average inter-movie duration (rounded to the nearest integer), average rating (rounded to 2 decimals), total votes, minimum and maximum ratings, and total movie duration? Sort the output first by movie count in descending order and then by total movie duration in descending order.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "director_mapping",
+            "movies",
+            "names",
+            "ratings"
+        ],
+        "col": {
+            "director_mapping": [],
+            "movies": [],
+            "names": [],
+            "ratings": []
+        },
+        "sample_history": {
+            "0": {
+                "director_mapping": [],
+                "names": [],
+                "movies": [],
+                "ratings": []
+            },
+            "1": {
+                "names": [],
+                "director_mapping": [],
+                "movies": [],
+                "ratings": []
+            },
+            "2": {
+                "names": [],
+                "director_mapping": [],
+                "movies": [],
+                "ratings": []
+            }
+        }
+    },
+    {
+        "instance_id": "local230",
+        "db": "imdb_movies",
+        "question": "Determine the top three genres with the most movies rated above 8, and then identify the top four directors who have directed the most films rated above 8 within those genres. List these directors and their respective movie counts.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "director_mapping",
+            "genre",
+            "names",
+            "ratings"
+        ],
+        "col": {
+            "director_mapping": [],
+            "genre": [],
+            "names": [],
+            "ratings": []
+        },
+        "sample_history": {
+            "0": {
+                "ratings": [],
+                "genre": [],
+                "director_mapping": [],
+                "names": []
+            },
+            "1": {
+                "ratings": [],
+                "genre": [],
+                "director_mapping": [],
+                "names": []
+            },
+            "2": {
+                "ratings": [],
+                "genre": [],
+                "director_mapping": [],
+                "names": []
+            }
+        }
+    },
+    {
+        "instance_id": "local156",
+        "db": "bank_sales_trading",
+        "question": "Analyze the annual average purchase price per Bitcoin by region, computed as the total dollar amount spent divided by the total quantity purchased each year, excluding the first year's data for each region. Then, for each year, rank the regions based on these average purchase prices, and calculate the annual percentage change in cost for each region compared to the previous year.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "bitcoin_members",
+            "bitcoin_prices",
+            "bitcoin_transactions"
+        ],
+        "col": {
+            "bitcoin_members": [],
+            "bitcoin_prices": [],
+            "bitcoin_transactions": []
+        },
+        "sample_history": {
+            "0": {
+                "bitcoin_transactions": [],
+                "bitcoin_members": [],
+                "bitcoin_prices": []
+            },
+            "1": {
+                "bitcoin_members": [],
+                "bitcoin_prices": [],
+                "bitcoin_transactions": []
+            },
+            "2": {
+                "bitcoin_members": [],
+                "bitcoin_transactions": [],
+                "bitcoin_prices": []
+            }
+        }
+    },
+    {
+        "instance_id": "local157",
+        "db": "bank_sales_trading",
+        "question": "Using the \"bitcoin_prices\" table, please calculate the daily percentage change in trading volume for each ticker from August 1 to August 10, 2021, ensuring that any volume ending in \"K\" or \"M\" is accurately converted to thousands or millions, any \"-\" volume is treated as zero, only non-zero volumes are used to determine the previous day's volume, and the results are ordered by ticker and date.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "bitcoin_prices"
+        ],
+        "col": {
+            "bitcoin_prices": []
+        },
+        "sample_history": {
+            "0": {
+                "bitcoin_prices": []
+            }
+        }
+    },
+    {
+        "instance_id": "local163",
+        "db": "education_business",
+        "question": "Which university faculty members' salaries are closest to the average salary for their respective ranks? Please provide the ranks, first names, last names, and salaries.university",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "university_faculty"
+        ],
+        "col": {
+            "university_faculty": []
+        },
+        "sample_history": {
+            "0": {
+                "university_faculty": []
+            }
+        }
+    },
+    {
+        "instance_id": "local168",
+        "db": "city_legislation",
+        "question": "Among job postings that specifically have the Data Analyst, require a non-null annual average salary, and are remote, what is the overall average salary when considering only the top three most frequently demanded skills for these positions?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "job_postings_fact",
+            "skills_dim",
+            "skills_job_dim"
+        ],
+        "col": {
+            "job_postings_fact": [],
+            "skills_dim": [],
+            "skills_job_dim": []
+        },
+        "sample_history": {
+            "0": {
+                "job_postings_fact": [],
+                "skills_job_dim": [],
+                "skills_dim": []
+            },
+            "1": {
+                "job_postings_fact": [],
+                "skills_job_dim": [],
+                "skills_dim": []
+            },
+            "2": {
+                "job_postings_fact": [],
+                "skills_job_dim": [],
+                "skills_dim": []
+            }
+        }
+    },
+    {
+        "instance_id": "local169",
+        "db": "city_legislation",
+        "question": "What is the annual retention rate of legislators who began their first term between January 1, 1917 and December 31, 1999, measured as the proportion of this cohort still in office on December 31st for each of the first 20 years following their initial term start? The results should show all 20 periods in sequence regardless of whether any legislators were retained in a particular year.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "legislators",
+            "legislators_terms"
+        ],
+        "col": {
+            "legislators": [],
+            "legislators_terms": []
+        },
+        "sample_history": {
+            "0": {
+                "legislators_terms": []
+            },
+            "1": {
+                "legislators": [],
+                "legislators_terms": []
+            },
+            "2": {
+                "legislators": [],
+                "legislators_terms": []
+            }
+        }
+    },
+    {
+        "instance_id": "local171",
+        "db": "city_legislation",
+        "question": "For male legislators from Louisiana, how many distinct legislators were actively serving on December 31 of each year from more than 30 years since their first term up to less than 50 years, grouping the results by the exact number of years elapsed since their first term?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "legislators",
+            "legislators_terms"
+        ],
+        "col": {
+            "legislators": [],
+            "legislators_terms": []
+        },
+        "sample_history": {
+            "0": {
+                "legislators": [],
+                "legislators_terms": []
+            },
+            "1": {
+                "legislators": [],
+                "legislators_terms": []
+            },
+            "2": {
+                "legislators": [],
+                "legislators_terms": []
+            }
+        }
+    },
+    {
+        "instance_id": "local167",
+        "db": "city_legislation",
+        "question": "Based on the state each female legislator first represented, which state has the highest number of female legislators whose terms included December 31st at any point, and what is that count? Please provide the state's abbreviation.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "legislators",
+            "legislators_terms"
+        ],
+        "col": {
+            "legislators": [],
+            "legislators_terms": []
+        },
+        "sample_history": {
+            "0": {
+                "legislators": [],
+                "legislators_terms": []
+            },
+            "1": {
+                "legislators": [],
+                "legislators_terms": []
+            },
+            "2": {
+                "legislators": [],
+                "legislators_terms": []
+            }
+        }
+    },
+    {
+        "instance_id": "local170",
+        "db": "city_legislation",
+        "question": "Identify the state abbreviations where, for both male and female legislators, the retention rate remains greater than zero at specific intervals of 0, 2, 4, 6, 8, and 10 years after their first term start date. A legislator is considered retained if they are serving on December 31 of the respective year. Only include states where both gender cohorts maintain non-zero retention rates at all six of these time points during the first decade of service.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "legislators",
+            "legislators_terms"
+        ],
+        "col": {
+            "legislators": [],
+            "legislators_terms": []
+        },
+        "sample_history": {
+            "0": {
+                "legislators": [],
+                "legislators_terms": []
+            },
+            "1": {
+                "legislators": [],
+                "legislators_terms": []
+            },
+            "2": {
+                "legislators": [],
+                "legislators_terms": []
+            }
+        }
+    },
+    {
+        "instance_id": "local193",
+        "db": "sqlite-sakila",
+        "question": "Could you find out the average percentage of the total lifetime sales (LTV) that occur in the first 7 and 30 days after a customer's initial purchase? Also, include the average total lifetime sales (LTV). Please exclude customers with zero lifetime sales. The 7- and 30-day periods should be based on the exact number of hours-minutes-seconds, not calendar days.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "customer",
+            "payment"
+        ],
+        "col": {
+            "customer": [],
+            "payment": []
+        },
+        "sample_history": {
+            "0": {
+                "customer": [],
+                "payment": []
+            },
+            "1": {
+                "customer": [],
+                "payment": []
+            },
+            "2": {
+                "customer": [],
+                "payment": []
+            }
+        }
+    },
+    {
+        "instance_id": "local194",
+        "db": "sqlite-sakila",
+        "question": "Please provide a list of the top three revenue-generating films for each actor, along with the average revenue per actor in those films, calculated by dividing the total film revenue equally among the actors for each film.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "actor",
+            "film",
+            "film_actor",
+            "inventory",
+            "payment",
+            "rental"
+        ],
+        "col": {
+            "actor": [],
+            "film": [],
+            "film_actor": [],
+            "inventory": [],
+            "payment": [],
+            "rental": []
+        },
+        "sample_history": {
+            "0": {
+                "film": [],
+                "inventory": [],
+                "rental": [],
+                "payment": [],
+                "film_actor": [],
+                "actor": []
+            },
+            "1": {
+                "film": [],
+                "inventory": [],
+                "rental": [],
+                "payment": [],
+                "film_actor": [],
+                "actor": []
+            },
+            "2": {
+                "film": [],
+                "inventory": [],
+                "rental": [],
+                "payment": [],
+                "film_actor": [],
+                "actor": []
+            }
+        }
+    },
+    {
+        "instance_id": "local195",
+        "db": "sqlite-sakila",
+        "question": "Please find out how widespread the appeal of our top five actors is. What percentage of our customers have rented films featuring these actors?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "actor",
+            "customer",
+            "film_actor",
+            "inventory",
+            "rental"
+        ],
+        "col": {
+            "actor": [],
+            "customer": [],
+            "film_actor": [],
+            "inventory": [],
+            "rental": []
+        },
+        "sample_history": {
+            "0": {
+                "actor": [],
+                "film_actor": [],
+                "customer": [],
+                "rental": [],
+                "inventory": []
+            },
+            "1": {
+                "actor": [],
+                "film_actor": [],
+                "inventory": [],
+                "rental": [],
+                "customer": []
+            },
+            "2": {
+                "actor": [],
+                "film_actor": [],
+                "inventory": [],
+                "rental": [],
+                "customer": []
+            }
+        }
+    },
+    {
+        "instance_id": "local196",
+        "db": "sqlite-sakila",
+        "question": "For each rating category of the first movie rented by customers—where the first movie is identified based on the earliest payment date per customer—please provide the average total amount spent per customer and the average number of subsequent rentals (calculated as the total number of rentals minus one) for customers whose first rented movie falls into that rating category.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "customer",
+            "film",
+            "inventory",
+            "payment",
+            "rental"
+        ],
+        "col": {
+            "customer": [],
+            "film": [],
+            "inventory": [],
+            "payment": [],
+            "rental": []
+        },
+        "sample_history": {
+            "0": {
+                "payment": [],
+                "rental": [],
+                "inventory": [],
+                "film": []
+            },
+            "1": {
+                "payment": [],
+                "rental": [],
+                "inventory": [],
+                "film": [],
+                "customer": []
+            },
+            "2": {
+                "payment": [],
+                "rental": [],
+                "inventory": [],
+                "film": []
+            }
+        }
+    },
+    {
+        "instance_id": "local197",
+        "db": "sqlite-sakila",
+        "question": "Among our top 10 paying customers, can you identify the largest change in payment amounts from one month to the immediately following month? Specifically, please determine for which customer and during which month this maximum month-over-month difference occurred, and provide the difference rounded to two decimal places.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "customer",
+            "payment"
+        ],
+        "col": {
+            "customer": [],
+            "payment": []
+        },
+        "sample_history": {
+            "0": {
+                "customer": [],
+                "payment": []
+            },
+            "1": {
+                "payment": [],
+                "customer": []
+            },
+            "2": {
+                "payment": [],
+                "customer": []
+            }
+        }
+    },
+    {
+        "instance_id": "local199",
+        "db": "sqlite-sakila",
+        "question": "Can you identify the year and month with the highest rental orders created by the store's staff for each store? Please list the store ID, the year, the month, and the total rentals for those dates.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "rental",
+            "staff"
+        ],
+        "col": {
+            "rental": [],
+            "staff": []
+        },
+        "sample_history": {
+            "0": {
+                "rental": [],
+                "staff": []
+            },
+            "1": {
+                "rental": [],
+                "staff": []
+            },
+            "2": {
+                "rental": [],
+                "staff": []
+            }
+        }
+    },
+    {
+        "instance_id": "local201",
+        "db": "modern_data",
+        "question": "Identify the first 10 words, sorted alphabetically, that are 4 to 5 characters long, start with 'r', and have at least one anagram of the same length, considering case-sensitive letters. Provide the count of such anagrams for each word.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "word_list"
+        ],
+        "col": {
+            "word_list": []
+        },
+        "sample_history": {
+            "0": {
+                "word_list": []
+            }
+        }
+    },
+    {
+        "instance_id": "local202",
+        "db": "city_legislation",
+        "question": "For alien data, how many of the top 10 states by alien population have a higher percentage of friendly aliens than hostile aliens, with an average alien age exceeding 200?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "alien_data"
+        ],
+        "col": {
+            "alien_data": []
+        },
+        "sample_history": {
+            "0": {
+                "alien_data": []
+            }
+        }
+    },
+    {
+        "instance_id": "local209",
+        "db": "delivery_center",
+        "question": "In the dataset of orders joined with store information, which store has the highest total number of orders, and among that store’s orders, what is the ratio of orders that appear in the deliveries table with a 'DELIVERED' status to the total orders for that store?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "deliveries",
+            "orders",
+            "stores"
+        ],
+        "col": {
+            "deliveries": [],
+            "orders": [],
+            "stores": []
+        },
+        "sample_history": {
+            "0": {
+                "orders": [],
+                "stores": [],
+                "deliveries": []
+            },
+            "1": {
+                "orders": [],
+                "stores": [],
+                "deliveries": []
+            },
+            "2": {
+                "orders": [],
+                "stores": [],
+                "deliveries": []
+            }
+        }
+    },
+    {
+        "instance_id": "local210",
+        "db": "delivery_center",
+        "question": "Can you identify the hubs that saw more than a 20% increase in finished orders from February to March?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "hubs",
+            "orders",
+            "stores"
+        ],
+        "col": {
+            "hubs": [],
+            "orders": [],
+            "stores": []
+        },
+        "sample_history": {
+            "0": {
+                "orders": [],
+                "stores": [],
+                "hubs": []
+            },
+            "1": {
+                "orders": [],
+                "stores": [],
+                "hubs": []
+            },
+            "2": {
+                "orders": [],
+                "stores": [],
+                "hubs": []
+            }
+        }
+    },
+    {
+        "instance_id": "local212",
+        "db": "delivery_center",
+        "question": "Can you find 5 delivery drivers with the highest average number of daily deliveries?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "deliveries",
+            "drivers",
+            "orders"
+        ],
+        "col": {
+            "deliveries": [],
+            "drivers": [],
+            "orders": []
+        },
+        "sample_history": {
+            "0": {
+                "deliveries": [],
+                "drivers": [],
+                "orders": []
+            },
+            "1": {
+                "deliveries": [],
+                "orders": []
+            },
+            "2": {
+                "deliveries": [],
+                "orders": [],
+                "drivers": []
+            }
+        }
+    },
+    {
+        "instance_id": "local218",
+        "db": "EU_soccer",
+        "question": "Can you calculate the median from the highest season goals of each team?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "Match"
+        ],
+        "col": {
+            "Match": []
+        },
+        "sample_history": {
+            "0": {
+                "Match": []
+            }
+        }
+    },
+    {
+        "instance_id": "local219",
+        "db": "EU_soccer",
+        "question": "In each league, considering all seasons, which single team has the fewest total match wins based on comparing home and away goals, including teams with zero wins, ensuring that if multiple teams tie for the fewest wins, only one team is returned for each league?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "League",
+            "Match",
+            "Team"
+        ],
+        "col": {
+            "League": [],
+            "Match": [],
+            "Team": []
+        },
+        "sample_history": {
+            "0": {
+                "League": [],
+                "Match": [],
+                "Team": []
+            },
+            "1": {
+                "Match": [],
+                "League": [],
+                "Team": []
+            },
+            "2": {
+                "League": [],
+                "Match": [],
+                "Team": []
+            }
+        }
+    },
+    {
+        "instance_id": "local221",
+        "db": "EU_soccer",
+        "question": "Tell me top10 teams with the most wins across the league",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "Match",
+            "Team"
+        ],
+        "col": {
+            "Match": [],
+            "Team": []
+        },
+        "sample_history": {
+            "0": {
+                "Match": [],
+                "Team": []
+            },
+            "1": {
+                "Match": [],
+                "Team": []
+            },
+            "2": {
+                "Match": [],
+                "Team": []
+            }
+        }
+    },
+    {
+        "instance_id": "local220",
+        "db": "EU_soccer",
+        "question": "Which player has participated in the highest number of winning matches and which player has participated in the highest number of losing matches, considering only matches where they actually played (excluding null entries) and where their team won or lost (excluding draws)?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "Match",
+            "Player"
+        ],
+        "col": {
+            "Match": [],
+            "Player": []
+        },
+        "sample_history": {
+            "0": {
+                "Match": [],
+                "Player": []
+            },
+            "1": {
+                "Match": [],
+                "Player": []
+            },
+            "2": {
+                "Match": [],
+                "Player": []
+            }
+        }
+    },
+    {
+        "instance_id": "local228",
+        "db": "IPL",
+        "question": "For each IPL season, identify the top three batsmen with the highest total runs scored and the top three bowlers with the most wickets taken, excluding ‘run out’, ‘hit wicket’, and ‘retired hurt’ dismissals. In the event of ties in runs or wickets, break the tie using the smaller player ID. Then output these six players in matched positions—batsman 1 with bowler 1, batsman 2 with bowler 2, and batsman 3 with bowler 3—in ascending order of the season ID, along with each player’s total runs or wickets.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "ball_by_ball",
+            "batsman_scored",
+            "match",
+            "player",
+            "wicket_taken"
+        ],
+        "col": {
+            "ball_by_ball": [],
+            "batsman_scored": [],
+            "match": [],
+            "player": [],
+            "wicket_taken": []
+        },
+        "sample_history": {
+            "0": {
+                "batsman_scored": [],
+                "match": [],
+                "wicket_taken": [],
+                "ball_by_ball": []
+            },
+            "1": {
+                "batsman_scored": [],
+                "match": [],
+                "player": [],
+                "wicket_taken": []
+            },
+            "2": {
+                "batsman_scored": [],
+                "match": [],
+                "player": [],
+                "wicket_taken": []
+            }
+        }
+    },
+    {
+        "instance_id": "local229",
+        "db": "IPL",
+        "question": "Find the IDs of players who scored the highest number of partnership runs for each match. The output should include the IDs of two players, each with their individual scores and the total partnership score. For each pair, the player with the higher individual score should be listed as player 1, and the player with the lower score as player 2. In cases where both players have the same score, the player with the higher ID should be player 1, and the player with the lower ID should be player 2. There can be multiple rows for a single match.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "ball_by_ball",
+            "batsman_scored"
+        ],
+        "col": {
+            "ball_by_ball": [],
+            "batsman_scored": []
+        },
+        "sample_history": {
+            "0": {
+                "ball_by_ball": [],
+                "batsman_scored": []
+            },
+            "1": {
+                "ball_by_ball": [],
+                "batsman_scored": []
+            },
+            "2": {
+                "ball_by_ball": [],
+                "batsman_scored": []
+            }
+        }
+    },
+    {
+        "instance_id": "local244",
+        "db": "music",
+        "question": "Calculate the duration of each track, classify them as short, medium, or long, output the minimum and maximum time for each kind (in minutes) and the total revenue for each category, group by the category.",
+        "external_knowledge": "music_length_type.md",
+        "evidence": "Music length types: Short (min to (min+avg)/2), Medium ((min+avg)/2 to (avg+max)/2), Long ((avg+max)/2 to max)",
+        "table": [
+            "InvoiceLine",
+            "Track"
+        ],
+        "col": {
+            "InvoiceLine": [],
+            "Track": []
+        },
+        "sample_history": {
+            "0": {
+                "Track": [],
+                "InvoiceLine": []
+            },
+            "1": {
+                "Track": [],
+                "InvoiceLine": []
+            },
+            "2": {
+                "Track": [],
+                "InvoiceLine": []
+            }
+        }
+    },
+    {
+        "instance_id": "local253",
+        "db": "education_business",
+        "question": "Using a Salary Dataset where the salary values need to be cleaned by removing non-numeric characters and converting them to a numeric type, write a detailed SQL query that identifies the top 5 companies by average salary in each of Mumbai, Pune, New Delhi, and Hyderabad, then compares each company’s average salary in those cities to the overall national average salary. The final result should display four columns: Location, Company Name, Average Salary in State, and Average Salary in Country, listing only the top 5 companies in each of the specified locations.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "SalaryDataset"
+        ],
+        "col": {
+            "SalaryDataset": []
+        },
+        "sample_history": {
+            "0": {
+                "SalaryDataset": []
+            }
+        }
+    },
+    {
+        "instance_id": "local258",
+        "db": "IPL",
+        "question": "Calculate the total number of wickets taken by each bowler (excluding run-outs and other dismissals not attributed to the bowler), their economy rate (total runs conceded divided by total overs bowled, considering only runs scored off the bat and ignoring any extra runs like wides and no-balls), their strike rate (average number of balls bowled per wicket taken), and their best bowling performance in a single match (the match with the most wickets taken by the bowler, formatted as \"wickets-runs\" where runs are the runs conceded excluding extras).",
+        "external_knowledge": "baseball_game_special_words_definition.md",
+        "evidence": "Batting Average = Total Runs ÷ Total Dismissals; Strike Rate = (Total Runs ÷ Balls Faced) × 100; Economy Rate = (Total Runs Conceded ÷ Balls Bowled) × 6; Wickets Taken = dismissals by bowler per match; Runs Given = runs conceded by bowler per match.",
+        "table": [
+            "ball_by_ball",
+            "batsman_scored",
+            "player",
+            "wicket_taken"
+        ],
+        "col": {
+            "ball_by_ball": [],
+            "batsman_scored": [],
+            "player": [],
+            "wicket_taken": []
+        },
+        "sample_history": {
+            "0": {
+                "wicket_taken": [],
+                "ball_by_ball": [],
+                "batsman_scored": [],
+                "player": []
+            },
+            "1": {
+                "wicket_taken": [],
+                "player": [],
+                "ball_by_ball": [],
+                "batsman_scored": []
+            },
+            "2": {
+                "wicket_taken": [],
+                "player": [],
+                "ball_by_ball": [],
+                "batsman_scored": []
+            }
+        }
+    },
+    {
+        "instance_id": "local259",
+        "db": "IPL",
+        "question": "For each player, list their ID, name, their most frequent role across all matches, batting hand, bowling skill, total runs scored, total matches played, total times they were dismissed, batting average (total runs divided by total dismissals), highest score in a single match, the number of matches in which they scored at least 30 runs, at least 50 runs, and at least 100 runs, total balls faced in their career, strike rate (total runs divided by total balls faced, multiplied by 100), total wickets taken, economy rate (average runs conceded per over), and their best bowling performance in a single match (most wickets taken in a match, formatted as \"wickets taken-runs given\", where the best performance is the one with the most wickets, and if tied, the fewest runs conceded). Ignore the extra runs data.",
+        "external_knowledge": "baseball_game_special_words_definition.md",
+        "evidence": "Batting Average = Total Runs ÷ Total Dismissals; Strike Rate = (Total Runs ÷ Balls Faced) × 100; Economy Rate = (Total Runs Conceded ÷ Balls Bowled) × 6; Wickets Taken: number of dismissals by a bowler; Runs Given: runs conceded by a bowler in a single match.",
+        "table": [
+            "ball_by_ball",
+            "batsman_scored",
+            "player",
+            "player_match",
+            "wicket_taken"
+        ],
+        "col": {
+            "ball_by_ball": [],
+            "batsman_scored": [],
+            "player": [],
+            "player_match": [],
+            "wicket_taken": []
+        },
+        "sample_history": {
+            "0": {
+                "player": [],
+                "player_match": [],
+                "ball_by_ball": [],
+                "batsman_scored": [],
+                "wicket_taken": []
+            },
+            "1": {
+                "player": [],
+                "player_match": [],
+                "ball_by_ball": [],
+                "batsman_scored": [],
+                "wicket_taken": []
+            },
+            "2": {
+                "player": [],
+                "player_match": [],
+                "ball_by_ball": [],
+                "batsman_scored": [],
+                "wicket_taken": []
+            }
+        }
+    },
+    {
+        "instance_id": "local262",
+        "db": "stacking",
+        "question": "Which problems exceed the total number of times they appear in the solution table when counting all occurrences, across steps 1, 2, and 3, where any non-\"Stack\" model's maximum test score is lower than the \"Stack\" model's test score for the same step and version?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "model_score",
+            "solution"
+        ],
+        "col": {
+            "model_score": [],
+            "solution": []
+        },
+        "sample_history": {
+            "0": {
+                "model_score": [],
+                "solution": []
+            },
+            "1": {
+                "model_score": [],
+                "solution": []
+            },
+            "2": {
+                "model_score": [],
+                "solution": []
+            }
+        }
+    },
+    {
+        "instance_id": "local263",
+        "db": "stacking",
+        "question": "Identify the L1_model associated with each model (specified by name and version) that occurs most frequently for each status ('strong' or 'soft'), along with the number of times it occurs. A model has a 'strong' status if, for any of its steps, the maximum test score among non-'Stack' models is less than the 'Stack' model's test score. It has a 'soft' status if the maximum test score among non-'Stack' models equals the 'Stack' model's test score. Count how many times each L1_model is associated with a 'strong' or 'soft' status across all models, and determine which L1_model has the highest occurrence for each status.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "model",
+            "model_score"
+        ],
+        "col": {
+            "model": [],
+            "model_score": []
+        },
+        "sample_history": {
+            "0": {
+                "model": [],
+                "model_score": []
+            },
+            "1": {
+                "model_score": [],
+                "model": []
+            },
+            "2": {
+                "model": [],
+                "model_score": []
+            }
+        }
+    },
+    {
+        "instance_id": "local264",
+        "db": "stacking",
+        "question": "Which model category (L1_model) appears the most frequently across all steps and versions when comparing traditional models to the Stack model, and what is the total count of its occurrences?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "model"
+        ],
+        "col": {
+            "model": []
+        },
+        "sample_history": {
+            "0": {
+                "model": []
+            }
+        }
+    },
+    {
+        "instance_id": "local269",
+        "db": "oracle_sql",
+        "question": "What is the average total quantity across all final packaging combinations, considering only the leaf-level items within each combination after fully expanding any nested packaging relationships?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "packaging",
+            "packaging_relations"
+        ],
+        "col": {
+            "packaging": [],
+            "packaging_relations": []
+        },
+        "sample_history": {
+            "0": {
+                "packaging": [],
+                "packaging_relations": []
+            },
+            "1": {
+                "packaging": [],
+                "packaging_relations": []
+            },
+            "2": {
+                "packaging": [],
+                "packaging_relations": []
+            }
+        }
+    },
+    {
+        "instance_id": "local270",
+        "db": "oracle_sql",
+        "question": "Which top-level packaging containers, meaning those not contained within any other packaging, have any item for which the total quantity accumulated across all nested levels in the hierarchy exceeds 500, and what are the names of both these containers and the corresponding items?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "packaging",
+            "packaging_relations"
+        ],
+        "col": {
+            "packaging": [],
+            "packaging_relations": []
+        },
+        "sample_history": {
+            "0": {
+                "packaging": [],
+                "packaging_relations": []
+            },
+            "1": {
+                "packaging": [],
+                "packaging_relations": []
+            },
+            "2": {
+                "packaging": [],
+                "packaging_relations": []
+            }
+        }
+    },
+    {
+        "instance_id": "local272",
+        "db": "oracle_sql",
+        "question": "For order 423, identify the product IDs, aisles, and positions from which to pick the exact quantities needed for each order line, ensuring that the total picked quantity for each product matches the cumulative quantities ordered without exceeding the available inventory in warehouse 1. Calculate the quantities to be picked from each location by prioritizing inventory with earlier purchased dates and smaller quantities, and ensure that picking respects the sequence and cumulative quantities of the order lines for products with multiple entries.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "inventory",
+            "locations",
+            "orderlines",
+            "products",
+            "purchases"
+        ],
+        "col": {
+            "inventory": [],
+            "locations": [],
+            "orderlines": [],
+            "products": [],
+            "purchases": []
+        },
+        "sample_history": {
+            "0": {
+                "orderlines": [],
+                "products": [],
+                "inventory": [],
+                "locations": [],
+                "purchases": []
+            },
+            "1": {
+                "orderlines": [],
+                "products": [],
+                "inventory": [],
+                "locations": [],
+                "purchases": []
+            },
+            "2": {
+                "orderlines": [],
+                "inventory": [],
+                "locations": [],
+                "purchases": []
+            }
+        }
+    },
+    {
+        "instance_id": "local273",
+        "db": "oracle_sql",
+        "question": "Calculate the average pick percentage for each product name, using a first-in-first-out approach that selects from inventory locations based on the earliest purchase date and smallest available quantity, ensuring that the picked quantity reflects only the overlapping range between each order’s required quantity and the inventory’s available quantity, and then grouping and ordering the results by product name?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "inventory",
+            "orderlines",
+            "orders",
+            "products",
+            "purchases"
+        ],
+        "col": {
+            "inventory": [],
+            "orderlines": [],
+            "orders": [],
+            "products": [],
+            "purchases": []
+        },
+        "sample_history": {
+            "0": {
+                "products": [],
+                "orderlines": [],
+                "inventory": [],
+                "purchases": [],
+                "orders": []
+            },
+            "1": {
+                "inventory": [],
+                "products": [],
+                "purchases": [],
+                "orderlines": []
+            },
+            "2": {
+                "products": [],
+                "orderlines": [],
+                "inventory": [],
+                "purchases": []
+            }
+        }
+    },
+    {
+        "instance_id": "local274",
+        "db": "oracle_sql",
+        "question": "Which products were picked for order 421, and what is the average number of units picked for each product, using FIFO (First-In, First-Out) method?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "inventory",
+            "picking_line",
+            "products",
+            "purchases"
+        ],
+        "col": {
+            "inventory": [],
+            "picking_line": [],
+            "products": [],
+            "purchases": []
+        },
+        "sample_history": {
+            "0": {
+                "picking_line": [],
+                "products": [],
+                "inventory": [],
+                "purchases": []
+            },
+            "1": {
+                "picking_line": [],
+                "products": [],
+                "inventory": [],
+                "purchases": []
+            },
+            "2": {
+                "picking_line": [],
+                "products": [],
+                "inventory": [],
+                "purchases": []
+            }
+        }
+    },
+    {
+        "instance_id": "local275",
+        "db": "oracle_sql",
+        "question": "Based on monthly sales data starting in January 2016 and using a centered moving average to adjust for seasonality, which products had a seasonality-adjusted sales ratio that stayed consistently above 2 for every month in the year 2017?",
+        "external_knowledge": "calculation_method.md",
+        "evidence": "Sales-to-CMA Ratio = actual sales / CMA. CMA uses two overlapping 12-month windows: (1) 5 months before + 6 months after, (2) 6 months before + 5 months after. Calculations restricted to months 7-30 to avoid edge effects.",
+        "table": [
+            "monthly_sales"
+        ],
+        "col": {
+            "monthly_sales": []
+        },
+        "sample_history": {
+            "0": {
+                "monthly_sales": []
+            }
+        }
+    },
+    {
+        "instance_id": "local277",
+        "db": "oracle_sql",
+        "question": "What is the average forecasted annual sales for products 4160 and 7790 during 2018, using monthly sales data starting from January 2016 for the first 36 months, applying seasonality adjustments from time steps 7 through 30, and employing a weighted regression method to estimate sales?",
+        "external_knowledge": "calculation_method.md",
+        "evidence": "Sales-to-CMA Ratio = actual sales / CMA. CMA uses two 12-month overlapping windows: (5 months before + 6 months after) and (6 months before + 5 months after). Ratio > 2 indicates significantly high sales. Calculations restricted to months 7-30 to avoid edge effects.",
+        "table": [
+            "monthly_sales"
+        ],
+        "col": {
+            "monthly_sales": []
+        },
+        "sample_history": {
+            "0": {
+                "monthly_sales": []
+            }
+        }
+    },
+    {
+        "instance_id": "local279",
+        "db": "oracle_sql",
+        "question": "Using a recursive monthly inventory adjustment model starting from December 2018 inventory levels, where we restock a product if its ending inventory drops below the minimum required level, determine for each product the month in 2019 where the absolute difference between its ending inventory and the minimum required level is the smallest, and return the product_id, that month, and the absolute difference.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "inventory",
+            "monthly_sales",
+            "product_minimums",
+            "purchases"
+        ],
+        "col": {
+            "inventory": [],
+            "monthly_sales": [],
+            "product_minimums": [],
+            "purchases": []
+        },
+        "sample_history": {
+            "0": {
+                "inventory": [],
+                "monthly_sales": [],
+                "product_minimums": []
+            },
+            "1": {
+                "inventory": [],
+                "monthly_sales": [],
+                "product_minimums": []
+            },
+            "2": {
+                "inventory": [],
+                "monthly_sales": [],
+                "product_minimums": [],
+                "purchases": []
+            }
+        }
+    },
+    {
+        "instance_id": "local283",
+        "db": "EU_soccer",
+        "question": "Analyze the soccer match dataset to determine the champion team for each season across all countries and leagues, awarding 3 points for every win, 1 point for every tie, and 0 points for every loss. For each season, return the champion’s team name, the league, the country, and the total points accumulated.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "Country",
+            "League",
+            "Match",
+            "Team"
+        ],
+        "col": {
+            "Country": [],
+            "League": [],
+            "Match": [],
+            "Team": []
+        },
+        "sample_history": {
+            "0": {
+                "Match": [],
+                "Country": [],
+                "League": [],
+                "Team": []
+            },
+            "1": {
+                "Match": [],
+                "Team": [],
+                "League": [],
+                "Country": []
+            },
+            "2": {
+                "Match": [],
+                "League": [],
+                "Country": [],
+                "Team": []
+            }
+        }
+    },
+    {
+        "instance_id": "local284",
+        "db": "bank_sales_trading",
+        "question": "For veg whsle data, can you generate a summary of our items' loss rates? Include the average loss rate, and also break down the count of items that are below, above, and within one standard deviation from this average.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "veg_loss_rate_df",
+            "veg_whsle_df"
+        ],
+        "col": {
+            "veg_loss_rate_df": [],
+            "veg_whsle_df": []
+        },
+        "sample_history": {
+            "0": {
+                "veg_whsle_df": [],
+                "veg_loss_rate_df": []
+            },
+            "1": {
+                "veg_loss_rate_df": [],
+                "veg_whsle_df": []
+            },
+            "2": {
+                "veg_loss_rate_df": [],
+                "veg_whsle_df": []
+            }
+        }
+    },
+    {
+        "instance_id": "local285",
+        "db": "bank_sales_trading",
+        "question": "For veg whsle data, can you analyze our financial performance over the years 2020 to 2023? I need insights into the average wholesale price, maximum wholesale price, minimum wholesale price, wholesale price difference, total wholesale price, total selling price, average loss rate, total loss, and profit for each category within each year. Round all calculated values to two decimal places.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "veg_cat",
+            "veg_loss_rate_df",
+            "veg_txn_df",
+            "veg_whsle_df"
+        ],
+        "col": {
+            "veg_cat": [],
+            "veg_loss_rate_df": [],
+            "veg_txn_df": [],
+            "veg_whsle_df": []
+        },
+        "sample_history": {
+            "0": {
+                "veg_whsle_df": [],
+                "veg_cat": [],
+                "veg_loss_rate_df": [],
+                "veg_txn_df": []
+            },
+            "1": {
+                "veg_whsle_df": [],
+                "veg_cat": [],
+                "veg_txn_df": [],
+                "veg_loss_rate_df": []
+            },
+            "2": {
+                "veg_whsle_df": [],
+                "veg_cat": [],
+                "veg_txn_df": [],
+                "veg_loss_rate_df": []
+            }
+        }
+    },
+    {
+        "instance_id": "local286",
+        "db": "electronic_sales",
+        "question": "Prepare a comprehensive performance report on our sellers, focusing on total sales, average item price, average review scores, and packing times. Ensure that the report includes only those sellers who have sold a quantity of more than 100 products and highlight the product category names in English with the highest sales volume.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "order_items",
+            "order_reviews",
+            "orders",
+            "product_category_name_translation",
+            "products",
+            "sellers"
+        ],
+        "col": {
+            "order_items": [],
+            "order_reviews": [],
+            "orders": [],
+            "product_category_name_translation": [],
+            "products": [],
+            "sellers": []
+        },
+        "sample_history": {
+            "0": {
+                "order_items": [],
+                "orders": [],
+                "order_reviews": [],
+                "products": [],
+                "product_category_name_translation": []
+            },
+            "1": {
+                "sellers": [],
+                "order_items": [],
+                "orders": [],
+                "order_reviews": [],
+                "products": [],
+                "product_category_name_translation": []
+            },
+            "2": {
+                "order_items": [],
+                "orders": [],
+                "order_reviews": [],
+                "products": [],
+                "product_category_name_translation": []
+            }
+        }
+    },
+    {
+        "instance_id": "local301",
+        "db": "bank_sales_trading",
+        "question": "For weekly-sales data, I need an analysis of our sales performance around mid-June for the years 2018, 2019, and 2020. Specifically, calculate the percentage change in sales between the four weeks leading up to June 15 and the four weeks following June 15 for each year.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "cleaned_weekly_sales"
+        ],
+        "col": {
+            "cleaned_weekly_sales": []
+        },
+        "sample_history": {
+            "0": {
+                "cleaned_weekly_sales": []
+            },
+            "1": {
+                "cleaned_weekly_sales": []
+            },
+            "2": {
+                "cleaned_weekly_sales": []
+            }
+        }
+    },
+    {
+        "instance_id": "local302",
+        "db": "bank_sales_trading",
+        "question": "Analyze the average percentage change in sales between the 12 weeks before and after June 15, 2020, for each attribute type: region, platform, age band, demographic, and customer type. For each attribute type, calculate the average percentage change in sales across all its attribute values. Identify the attribute type with the highest negative impact on sales and provide its average percentage change in sales.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "cleaned_weekly_sales"
+        ],
+        "col": {
+            "cleaned_weekly_sales": []
+        },
+        "sample_history": {
+            "0": {
+                "cleaned_weekly_sales": []
+            }
+        }
+    },
+    {
+        "instance_id": "local329",
+        "db": "log",
+        "question": "How many unique sessions visited the /regist/input page and then the /regist/confirm page, in that order?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "form_log"
+        ],
+        "col": {
+            "form_log": []
+        },
+        "sample_history": {
+            "0": {
+                "form_log": []
+            }
+        }
+    },
+    {
+        "instance_id": "local330",
+        "db": "log",
+        "question": "Using the activity log table, compute the total number of unique user sessions where each web page appears as either a landing page (the first page visited in a session based on timestamp) or an exit page (the last page visited in a session based on timestamp), or both. Count each session only once per page even if the page serves as both landing and exit for that session. ",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "activity_log"
+        ],
+        "col": {
+            "activity_log": []
+        },
+        "sample_history": {
+            "0": {
+                "activity_log": []
+            }
+        }
+    },
+    {
+        "instance_id": "local331",
+        "db": "log",
+        "question": "Which three distinct third-page visits are most frequently observed immediately after two consecutive visits to the '/detail' page, and how many times does each third-page visit occur?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "activity_log"
+        ],
+        "col": {
+            "activity_log": []
+        },
+        "sample_history": {
+            "0": {
+                "activity_log": []
+            }
+        }
+    },
+    {
+        "instance_id": "local358",
+        "db": "log",
+        "question": "How many users are there in each age category (20s, 30s, 40s, 50s, and others)?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "mst_users"
+        ],
+        "col": {
+            "mst_users": []
+        },
+        "sample_history": {
+            "0": {
+                "mst_users": []
+            }
+        }
+    },
+    {
+        "instance_id": "local360",
+        "db": "log",
+        "question": "For each user session in the activity log table, identify the number of events that occurred before the first '/detail' click or '/complete' conversion, counting only events that have a non-empty search type. Find the sessions with the minimum count of such pre-click/pre-conversion events. If multiple sessions share this minimum count, include all of them in the results. Return each qualifying session along with the corresponding path and search type.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "activity_log"
+        ],
+        "col": {
+            "activity_log": []
+        },
+        "sample_history": {
+            "0": {
+                "activity_log": []
+            }
+        }
+    },
+    {
+        "instance_id": "local344",
+        "db": "f1",
+        "question": "Considering all races where pit stop data is available, and focusing on instances when a driver was not behind another car on the previous lap but is behind on the current lap (accounting for retirements, pit-stop entries, pit-stop exits, and race starts), how many times has each type of overtake occurred in Formula 1?",
+        "external_knowledge": "f1_overtake.md",
+        "evidence": "Overtake classifications: R (Retirement) if overtaken driver retired on same lap. P (Pit) if overtaken during pit entry (same lap pitted) or pit exit (pitted previous lap, time gap < typical pit duration). S (Start) if overtake on first lap and drivers within two grid positions initially. T (Track) if no other conditions apply.",
+        "table": [
+            "lap_positions",
+            "pit_stops",
+            "races",
+            "races_ext",
+            "results",
+            "retirements",
+            "status"
+        ],
+        "col": {
+            "lap_positions": [],
+            "pit_stops": [],
+            "races": [],
+            "races_ext": [],
+            "results": [],
+            "retirements": [],
+            "status": []
+        },
+        "sample_history": {
+            "0": {
+                "races_ext": [],
+                "lap_positions": [],
+                "retirements": [],
+                "status": [],
+                "pit_stops": [],
+                "races": []
+            },
+            "1": {
+                "lap_positions": [],
+                "races_ext": [],
+                "retirements": [],
+                "pit_stops": []
+            },
+            "2": {
+                "lap_positions": [],
+                "races_ext": [],
+                "pit_stops": [],
+                "retirements": [],
+                "status": [],
+                "results": []
+            }
+        }
+    },
+    {
+        "instance_id": "local336",
+        "db": "f1",
+        "question": "In the first five laps of the race, how many overtakes occurred in each category—retirements, pit stops, start-related overtakes, and standard on-track passes?",
+        "external_knowledge": "f1_overtake.md",
+        "evidence": "Overtake classifications: R (overtaken retired same lap), P (overtaken entering pit same lap OR exiting pit after pitting previous lap with small time gap), S (first lap and within two grid positions at start), T (default when no other conditions met).",
+        "table": [
+            "lap_positions",
+            "pit_stops",
+            "retirements"
+        ],
+        "col": {
+            "lap_positions": [],
+            "pit_stops": [],
+            "retirements": []
+        },
+        "sample_history": {
+            "0": {
+                "lap_positions": [],
+                "retirements": [],
+                "pit_stops": []
+            },
+            "1": {
+                "lap_positions": [],
+                "retirements": [],
+                "pit_stops": []
+            },
+            "2": {
+                "lap_positions": [],
+                "retirements": [],
+                "pit_stops": []
+            }
+        }
+    },
+    {
+        "instance_id": "local335",
+        "db": "f1",
+        "question": "In Formula 1 seasons since 2001, considering only drivers who scored points in a season, which five constructors have had the most seasons where their drivers scored the fewest total points among all point-scoring drivers in that season?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "constructors",
+            "drivers",
+            "races",
+            "results"
+        ],
+        "col": {
+            "constructors": [],
+            "drivers": [],
+            "races": [],
+            "results": []
+        },
+        "sample_history": {
+            "0": {
+                "races": [],
+                "results": [],
+                "drivers": [],
+                "constructors": []
+            },
+            "1": {
+                "races": [],
+                "results": [],
+                "constructors": []
+            },
+            "2": {
+                "races": [],
+                "results": [],
+                "constructors": []
+            }
+        }
+    },
+    {
+        "instance_id": "local309",
+        "db": "f1",
+        "question": "For each year, which driver and which constructor scored the most points? I want the full name of each driver.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "constructor_results",
+            "constructor_standings",
+            "constructors",
+            "driver_standings",
+            "drivers",
+            "races",
+            "results"
+        ],
+        "col": {
+            "constructor_results": [],
+            "constructor_standings": [],
+            "constructors": [],
+            "driver_standings": [],
+            "drivers": [],
+            "races": [],
+            "results": []
+        },
+        "sample_history": {
+            "0": {
+                "drivers": [],
+                "constructors": [],
+                "races": [],
+                "driver_standings": [],
+                "constructor_standings": []
+            },
+            "1": {
+                "races": [],
+                "driver_standings": [],
+                "drivers": [],
+                "constructor_standings": [],
+                "constructors": [],
+                "results": []
+            },
+            "2": {
+                "drivers": [],
+                "constructors": [],
+                "results": [],
+                "races": [],
+                "constructor_results": [],
+                "driver_standings": [],
+                "constructor_standings": []
+            }
+        }
+    },
+    {
+        "instance_id": "local310",
+        "db": "f1",
+        "question": "Using only the data from the ‘results’ table, find the three years in which the sum of the highest total points earned by any driver and the highest total points earned by any constructor in that year (both calculated by summing up points from the ‘results’ table) is smallest, and list those three years in order of ascending total.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "races",
+            "results"
+        ],
+        "col": {
+            "races": [],
+            "results": []
+        },
+        "sample_history": {
+            "0": {
+                "races": [],
+                "results": []
+            },
+            "1": {
+                "results": [],
+                "races": []
+            },
+            "2": {
+                "results": [],
+                "races": []
+            }
+        }
+    },
+    {
+        "instance_id": "local311",
+        "db": "f1",
+        "question": "Which constructors had the top 3 combined points from their best driver and team, and in which years did they achieve them?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "circuits",
+            "constructor_standings",
+            "constructors",
+            "driver_standings",
+            "drivers",
+            "races",
+            "results"
+        ],
+        "col": {
+            "circuits": [],
+            "constructor_standings": [],
+            "constructors": [],
+            "driver_standings": [],
+            "drivers": [],
+            "races": [],
+            "results": []
+        },
+        "sample_history": {
+            "0": {
+                "constructors": [],
+                "constructor_standings": [],
+                "driver_standings": [],
+                "drivers": [],
+                "races": [],
+                "circuits": [],
+                "results": []
+            },
+            "1": {
+                "constructors": [],
+                "constructor_standings": [],
+                "races": [],
+                "results": [],
+                "drivers": [],
+                "driver_standings": []
+            },
+            "2": {
+                "constructors": [],
+                "constructor_standings": [],
+                "races": [],
+                "driver_standings": [],
+                "results": [],
+                "drivers": []
+            }
+        }
+    },
+    {
+        "instance_id": "local354",
+        "db": "f1",
+        "question": "Among Formula 1 drivers who raced during the 1950s, which drivers completed a season in that decade with the same constructor in both the first and the last race they participated in, while also taking part in at least two distinct race rounds during that season?",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "constructors",
+            "drivers",
+            "races",
+            "results"
+        ],
+        "col": {
+            "constructors": [],
+            "drivers": [],
+            "races": [],
+            "results": []
+        },
+        "sample_history": {
+            "0": {
+                "races": [],
+                "results": [],
+                "drivers": []
+            },
+            "1": {
+                "races": [],
+                "results": [],
+                "drivers": [],
+                "constructors": []
+            },
+            "2": {
+                "races": [],
+                "drivers": [],
+                "results": [],
+                "constructors": []
+            }
+        }
+    },
+    {
+        "instance_id": "local355",
+        "db": "f1",
+        "question": "Calculate the overall average first round and average last round of races missed by Formula 1 drivers across all years. Include only drivers who missed fewer than three races in a given year and who switched teams between their appearances immediately before and after their hiatus (i.e., the constructor ID for the race right before their first missed race must be different from the constructor ID for the race right after their last missed race in that year). Do not group results by year; return just the overall averages across the entire dataset.",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "constructors",
+            "drives",
+            "races",
+            "results"
+        ],
+        "col": {
+            "constructors": [],
+            "drives": [],
+            "races": [],
+            "results": []
+        },
+        "sample_history": {
+            "0": {
+                "drives": [],
+                "races": [],
+                "results": [],
+                "constructors": []
+            },
+            "1": {
+                "drives": []
+            },
+            "2": {
+                "drives": []
+            }
+        }
+    },
+    {
+        "instance_id": "local356",
+        "db": "f1",
+        "question": "Provide the full names of drivers who have been overtaken on track more times than they have overtaken others on track during race laps, excluding position changes due to pit stops (both at pit entry and exit), retirements, or position changes that occurred during the first lap of a race (considered as start movements).",
+        "external_knowledge": null,
+        "evidence": "",
+        "table": [
+            "drivers",
+            "lap_positions",
+            "pit_stops",
+            "retirements",
+            "status"
+        ],
+        "col": {
+            "drivers": [],
+            "lap_positions": [],
+            "pit_stops": [],
+            "retirements": [],
+            "status": []
+        },
+        "sample_history": {
+            "0": {
+                "drivers": [],
+                "lap_positions": [],
+                "retirements": [],
+                "status": [],
+                "pit_stops": []
+            },
+            "1": {
+                "drivers": [],
+                "lap_positions": [],
+                "retirements": [],
+                "status": [],
+                "pit_stops": []
+            },
+            "2": {
+                "lap_positions": [],
+                "pit_stops": [],
+                "retirements": [],
+                "drivers": []
+            }
+        }
+    }
+]

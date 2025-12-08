@@ -1,0 +1,23 @@
+[
+    {
+        "DB_type":"Sqlite",
+        "Local_path":"spider2-lite/resource/databases/sqlite",
+        "describe1":"Please place your downloaded local database address here, e.g.: spider2-lite/resource/databases/spider2-localdb",
+        "Authentication":"no have",
+        "describe2":"no have"
+    },
+    {
+        "DB_type":"Snowflake",
+        "Local_path":"spider2-lite/resource/databases/snowflake",
+        "describe1":"Please set the corresponding database metadata path",
+        "Authentication":"spider2-lite/evaluation_suite/snowflake_credential.json",
+        "describe2":"Configure your Snowflake according to the official Spider2 requirements, and place the corresponding snowflake_credential.json address here. (Not required if you only choose to run SQLite)"
+    },
+    {
+        "DB_type":"Bigquery",
+        "Local_path":"spider2-lite/resource/databases/bigquery",
+        "describe1":"Please set the corresponding database metadata path",
+        "Authentication":"spider2-lite/evaluation_suite/bigquery_credential.json",
+        "describe2":"Configure your BigQuery according to the official Spider2 requirements, and place the corresponding bigquery_credential.json address here. (Not required if you only choose to run SQLite)"
+    }
+]

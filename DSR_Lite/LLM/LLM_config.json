@@ -1,0 +1,22 @@
+{
+    "DeepSeek-AI":{
+        "url": "https://api.deepseek.com/v1",
+        "key":"sk-123456789",
+        "Describe":"⚠️ Please delete the current file, assuming you're handing over the codebase!"
+    },
+    "Modelscope":{
+        "url": "https://api-inference.modelscope.cn/v1",
+        "key":"ms-123456789",
+        "Describe":"Free"
+    },
+    "VLLM":{
+        "url": "http://localhost:8000/v1",
+        "key":"DSR-SQL",
+        "Describe":"Please use the port you configured!"
+    },
+    "GPT":{
+        "url": "",
+        "key":"",
+        "Describe":"We're not planning to use closed-source models for testing at the moment."
+    }
+}

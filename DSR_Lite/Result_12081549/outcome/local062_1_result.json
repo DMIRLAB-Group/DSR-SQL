@@ -1,0 +1,148 @@
+[
+  {
+    "instance_id": "local062",
+    "db": "complex_oracle",
+    "question": "Please group all Italian customers into ten buckets for December 2021 by summing their profits from all products purchased (where profit is calculated as quantity_sold multiplied by the difference between unit_price and unit_cost), then divide the overall range of total monthly profits into ten equal intervals. For each bucket, provide the number of customers, and identify the minimum and maximum total profits within that bucket.",
+    "external_knowledge": null,
+    "evidence": "",
+    "table": [
+      "costs",
+      "countries",
+      "customers",
+      "sales",
+      "times"
+    ],
+    "col": {
+      "costs": [
+        "channel_id",
+        "prod_id",
+        "promo_id",
+        "time_id",
+        "unit_cost",
+        "unit_price"
+      ],
+      "countries": [
+        "country_id",
+        "country_iso_code",
+        "country_name"
+      ],
+      "customers": [
+        "country_id",
+        "cust_first_name",
+        "cust_id",
+        "cust_last_name"
+      ],
+      "sales": [
+        "channel_id",
+        "cust_id",
+        "prod_id",
+        "promo_id",
+        "quantity_sold",
+        "time_id"
+      ],
+      "times": [
+        "calendar_month_desc",
+        "calendar_year",
+        "time_id"
+      ]
+    },
+    "sample_history": {
+      "0": {
+        "countries": [
+          "country_id",
+          "country_name",
+          "country_iso_code"
+        ],
+        "times": [
+          "time_id",
+          "calendar_month_desc",
+          "calendar_year"
+        ],
+        "customers": [
+          "cust_id",
+          "cust_first_name",
+          "cust_last_name",
+          "country_id"
+        ],
+        "sales": [
+          "cust_id",
+          "quantity_sold",
+          "prod_id",
+          "time_id",
+          "channel_id",
+          "promo_id"
+        ],
+        "costs": [
+          "prod_id",
+          "time_id",
+          "channel_id",
+          "promo_id",
+          "unit_price",
+          "unit_cost"
+        ]
+      },
+      "1": {
+        "customers": [
+          "cust_id",
+          "country_id"
+        ],
+        "countries": [
+          "country_id",
+          "country_name"
+        ],
+        "sales": [
+          "time_id",
+          "prod_id",
+          "channel_id",
+          "promo_id",
+          "quantity_sold",
+          "cust_id"
+        ],
+        "times": [
+          "time_id",
+          "calendar_month_desc"
+        ],
+        "costs": [
+          "prod_id",
+          "time_id",
+          "channel_id",
+          "promo_id",
+          "unit_price",
+          "unit_cost"
+        ]
+      },
+      "2": {
+        "customers": [
+          "cust_id",
+          "cust_first_name",
+          "cust_last_name",
+          "country_id"
+        ],
+        "countries": [
+          "country_id",
+          "country_name"
+        ],
+        "times": [
+          "time_id",
+          "calendar_month_desc",
+          "calendar_year"
+        ],
+        "sales": [
+          "cust_id",
+          "quantity_sold",
+          "prod_id",
+          "time_id"
+        ],
+        "costs": [
+          "prod_id",
+          "time_id",
+          "unit_price",
+          "unit_cost"
+        ]
+      }
+    },
+    "temp_SQL": "WITH customer_profits AS (\n    SELECT customers.cust_id, \n           SUM((costs.unit_price - costs.unit_cost) * sales.quantity_sold) AS total_profit\n    FROM customers\n    INNER JOIN sales ON customers.cust_id = sales.cust_id\n    INNER JOIN costs ON sales.prod_id = costs.prod_id AND sales.time_id = costs.time_id AND sales.promo_id = costs.promo_id AND sales.channel_id = costs.channel_id\n    INNER JOIN times ON sales.time_id = times.time_id\n    WHERE customers.country_id = 52770\n      AND times.calendar_month_desc = '2021-12'\n      AND (costs.unit_price - costs.unit_cost) * sales.quantity_sold >= 0\n    GROUP BY customers.cust_id\n),\nprofit_ranges AS (\n    SELECT MIN(total_profit) AS min_profit,\n           MAX(total_profit) AS max_profit,\n           (MAX(total_profit) - MIN(total_profit))/10 AS bucket_width\n    FROM customer_profits\n)\nSELECT \n    CASE \n        WHEN FLOOR((total_profit - min_profit)/bucket_width) + 1 > 10 THEN 10\n        ELSE FLOOR((total_profit - min_profit)/bucket_width) + 1\n    END AS bucket_number,\n    COUNT(cust_id) AS customer_count,\n    MIN(total_profit) AS min_bucket_profit,\n    MAX(total_profit) AS max_bucket_profit\nFROM customer_profits\nCROSS JOIN profit_ranges\nGROUP BY bucket_number\nORDER BY bucket_number",
+    "final_SQL": "WITH customer_profits AS (\n    SELECT customers.cust_id, \n           SUM((costs.unit_price - costs.unit_cost) * sales.quantity_sold) AS total_profit\n    FROM customers\n    INNER JOIN sales ON customers.cust_id = sales.cust_id\n    INNER JOIN costs ON sales.prod_id = costs.prod_id AND sales.time_id = costs.time_id AND sales.promo_id = costs.promo_id AND sales.channel_id = costs.channel_id\n    INNER JOIN times ON sales.time_id = times.time_id\n    WHERE customers.country_id = 52770\n      AND times.calendar_month_desc = '2021-12'\n      AND (costs.unit_price - costs.unit_cost) * sales.quantity_sold >= 0\n    GROUP BY customers.cust_id\n),\nprofit_ranges AS (\n    SELECT MIN(total_profit) AS min_profit,\n           MAX(total_profit) AS max_profit,\n           (MAX(total_profit) - MIN(total_profit))/10 AS bucket_width\n    FROM customer_profits\n)\nSELECT \n    CASE \n        WHEN FLOOR((total_profit - min_profit)/bucket_width) + 1 > 10 THEN 10\n        ELSE FLOOR((total_profit - min_profit)/bucket_width) + 1\n    END AS bucket_number,\n    COUNT(cust_id) AS customer_count,\n    MIN(total_profit) AS min_bucket_profit,\n    MAX(total_profit) AS max_bucket_profit\nFROM customer_profits\nCROSS JOIN profit_ranges\nGROUP BY bucket_number\nORDER BY bucket_number",
+    "Step_counter": 4
+  }
+]
